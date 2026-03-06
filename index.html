@@ -142,29 +142,27 @@
     <div class="nav-tab" onclick="showView('strategic', this, 'active-purple')">Strategiczny</div>
     <div class="nav-tab" onclick="showView('wins', this, 'active-green')">Wins Log</div>
   </div>
-  <div class="nav-date">Auto-aktualizacja: 06.03.2026 13:55</div>
+  <div class="nav-date">Auto-aktualizacja: 06.03.2026 14:25</div>
 </div>
 
 <div id="ops" class="view active">
   <div class="kpi-bar">
-    <div class="kpi-card"><div class="kpi-val orange">67</div><div class="kpi-label">Decyzji aktywnych</div></div>
-    <div class="kpi-card"><div class="kpi-val green">67</div><div class="kpi-label">Decyzji łącznie</div></div>
-    <div class="kpi-card"><div class="kpi-val yellow">11</div><div class="kpi-label">Deadline'ów wykrytych</div></div>
+    <div class="kpi-card"><div class="kpi-val orange">68</div><div class="kpi-label">Decyzji aktywnych</div></div>
+    <div class="kpi-card"><div class="kpi-val green">68</div><div class="kpi-label">Decyzji łącznie</div></div>
+    <div class="kpi-card"><div class="kpi-val yellow">15</div><div class="kpi-label">Deadline'ów wykrytych</div></div>
   </div>
   <div class="section-title red">NADCHODZĄCE DEADLINE'Y</div>
   <div class="deadlines">
+    <div class="dl-card"><div class="dl-date">10.03</div><div class="dl-text">Dashboard operacji — dane wsadowe wysłane do Olega</div></div>
+    <div class="dl-card"><div class="dl-date">14.03</div><div class="dl-text">Dashboard operacji — dane wsadowe wysłane do Olega</div></div>
+    <div class="dl-card"><div class="dl-date">14.03</div><div class="dl-text">Dashboard operacji — dane wsadowe wysłane do Olega</div></div>
+    <div class="dl-card"><div class="dl-date">16.03</div><div class="dl-text">Dashboard operacji — dane wsadowe wysłane do Olega</div></div>
     <div class="dl-card"><div class="dl-date">06.03</div><div class="dl-text">OBNIŻKI CEN NAJMU ~20% — NATYCHMIAST</div></div>
     <div class="dl-card"><div class="dl-date">10.03</div><div class="dl-text">KONTAKTY Z TERENU — 20/TYDZIEŃ OD 10.03</div></div>
     <div class="dl-card"><div class="dl-date">10.03</div><div class="dl-text">ANKIETY DYREKTORÓW — FOLLOW-UP WYSŁANY, deadline 10.03</div></div>
     <div class="dl-card"><div class="dl-date">13.03.2026</div><div class="dl-text">ROADMAPA IT SPRZEDAŻ/MARKETING NAJEMCÓW</div></div>
     <div class="dl-card"><div class="dl-date">14.03</div><div class="dl-text">TIMELINE OFENSYWY — START 16 MARCA 2026</div></div>
     <div class="dl-card"><div class="dl-date">16.03</div><div class="dl-text">TIMELINE OFENSYWY — START 16 MARCA 2026</div></div>
-    <div class="dl-card"><div class="dl-date">11.03</div><div class="dl-text">LINKEDIN — PRZEJĘCIE POSTOWANIA PRZEZ MACIEJA</div></div>
-    <div class="dl-card"><div class="dl-date">12.03</div><div class="dl-text">LINKEDIN — PRZEJĘCIE POSTOWANIA PRZEZ MACIEJA</div></div>
-    <div class="dl-card"><div class="dl-date">27.02</div><div class="dl-text">BOARD MEETING — ROADMAPA AI + EXECUTION + KOSZTY
-
-**KONTEKST:** Board Meeting 27</div></div>
-    <div class="dl-card"><div class="dl-date">27.02</div><div class="dl-text">LINKEDIN — PRZEJĘCIE OD AGENCJI + NOWA STRATEGIA</div></div>
   </div>
   <div class="section-title">TYGODNIE MARCA</div>
   <div class="weeks-grid w4">
@@ -178,10 +176,12 @@
     <div class="week-card">
       <div class="week-header"><div class="week-num">TYG 2</div><div class="week-dates">9-14.03</div></div>
       <div class="task"><div class="task-dot dot-todo"></div><span><b>Roadmapa IT najem: Kamila + Paweł dają feedback na mapę systemów IT sprzedaż/marketing najemców (v3). Deadline: pt 13.03. Pliki: `materialy/20260306_roadmapa-it-sprzedaz-najemcy-v3.md/pdf`</b> <span class="owner">Kamila + Paweł</span></span></div>
+      <div class="task"><div class="task-dot dot-todo"></div><span><b>Oleg dostarcza dane konfiguracyjne do dashboardu operacji — mapa regionów, lista sprzątaczek, struktura Odoo</b> <span class="owner">Oleg</span></span></div>
       <div class="task"><div class="task-dot dot-todo"></div><span><b>Shared Projects w Teams: (1) &quot;DN Wspólny&quot; (Public) z plikami kontekstowymi, (2) projekty per dyrektor (Private) z KPI i celami działu</b> <span class="owner">CTO</span></span></div>
       <div class="task"><div class="task-dot dot-todo"></div><span><b>Google Drive `/AI-Kontekst-DN/` + Drive Integration w projektach webowych</b> <span class="owner">CTO</span></span></div>
       <div class="task"><div class="task-dot dot-todo"></div><span><b>Google Drive Desktop na laptopach dyrektorów → auto-sync kontekstu do CLI</b> <span class="owner">CTO</span></span></div>
       <div class="task"><div class="task-dot dot-todo"></div><span><b>Nearby: sklep z pokojami GOTOWY (strategiczny must-have)</b> <span class="owner">Nearby team</span></span></div>
+      <div class="task"><div class="task-dot dot-todo"></div><span><b>CTO podpina Odoo API — statusy pokoi, daty turnaround, zadania sprzątania</b> <span class="owner">CTO</span></span></div>
     </div>
     <div class="week-card">
       <div class="week-header"><div class="week-num">TYG 3</div><div class="week-dates">16-21.03</div></div>
@@ -189,6 +189,7 @@
       <div class="task"><div class="task-dot dot-todo"></div><span><b>Automat START DN: Nowa transkrypcja &quot;START Dobrego Najmu - [nazwisko]&quot; w Happy Scribe → (1) AI generuje 2 notatki wg schematu Macieja → (2) notatki lądują w Livespace przy kontakcie → (3) wysyłka maila follow-up. Schemat notatek: SPYTAĆ MACIEJA (ma gotowy template). Pipeline: Happy Scribe API (trigger/poll) → AI processing → Livespace API (notes) → Gmail API (mail)</b> <span class="owner">CTO</span></span></div>
       <div class="task"><div class="task-dot dot-todo"></div><span><b>Dyrektorzy testują asystentów (web + CLI) z pełnym kontekstem</b> <span class="owner">wszyscy D4</span></span></div>
       <div class="task"><div class="task-dot dot-todo"></div><span><b>Persona najemcy — mini-survey z handlowcami (Diana, Kamila)</b> <span class="owner">CSO + CMO</span></span></div>
+      <div class="task"><div class="task-dot dot-todo"></div><span><b>Dashboard operacji LIVE v1 — pierwszy dashboard z danymi (Odoo + PKO + OLX)</b> <span class="owner">CTO/COO</span></span></div>
     </div>
     <div class="week-card">
       <div class="week-header"><div class="week-num">TYG 4</div><div class="week-dates">23-31.03</div></div>
@@ -199,6 +200,10 @@
     </div>
   </div>
   <div class="section-title">AKTYWNE DECYZJE</div>
+  <div class="task" style="margin-bottom: 8px;">
+    <div class="task-dot dot-doing"></div>
+    <span><b>06.03.2026 | OPERACJE</b> — Dashboard operacji — dane wsadowe wysłane do Olega <span class="owner">aktywna</span></span>
+  </div>
   <div class="task" style="margin-bottom: 8px;">
     <div class="task-dot dot-doing"></div>
     <span><b>06.03.2026 | OPERACJE</b> — Audyt portali ogłoszeniowych — przekazany Kamili i Dianie <span class="owner">aktywna</span></span>
@@ -255,10 +260,6 @@
     <div class="task-dot dot-doing"></div>
     <span><b>05.03.2026 | STRATEGIA</b> — PLAN OFENSYWY 100M v3 — ZATWIERDZONY <span class="owner">aktywna — w trakcie realizacji</span></span>
   </div>
-  <div class="task" style="margin-bottom: 8px;">
-    <div class="task-dot dot-doing"></div>
-    <span><b>05.03.2026 | OPERACJE</b> — SZKOLENIE BURNEJKO — MACIEJ ZAPISANY, DO PRZEJŚCIA <span class="owner">aktywna — Maciej do przejścia szkolenia</span></span>
-  </div>
 
   <div class="legend">
     <div class="leg-item"><div class="leg-dot" style="background:#03B54D"></div> Zrobione</div>
@@ -278,7 +279,7 @@
         <div class="task"><div class="task-dot dot-todo"></div><span>Claude for Teams — kupić 5 seats Standard ($25/os). Zaprosić: Marek, Oleg, Paweł, Kamila/Diana, Karolina</span></div>
         <div class="task"><div class="task-dot dot-todo"></div><span>Wszyscy dyrektorzy kończą AIBL (10 lekcji) — TWARDE</span></div>
         <div class="task"><div class="task-dot dot-todo"></div><span>Roadmapa IT najem: Kamila + Paweł dają feedback na mapę systemów IT sprzedaż/marketing najemców (v3). Deadline: pt 13.03. Pliki: `materialy/20260306_roadmapa-it-sprzedaz-najemcy-v3.md/pdf`</span></div>
-        <div class="task"><div class="task-dot dot-todo"></div><span>Shared Projects w Teams: (1) &quot;DN Wspólny&quot; (Public) z plikami kontekstowymi, (2) projekty per dyrektor (Private) z KPI i celami działu</span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span>Oleg dostarcza dane konfiguracyjne do dashboardu operacji — mapa regionów, lista sprzątaczek, struktura Odoo</span></div>
         <div class="task"><div class="task-dot dot-todo"></div><span>ROY v1 — procesor spotkań (Happy Scribe → decyzje → zadania → tracking)</span></div>
         <div class="task"><div class="task-dot dot-todo"></div><span>Automat START DN: Nowa transkrypcja &quot;START Dobrego Najmu - [nazwisko]&quot; w Happy Scribe → (1) AI generuje 2 notatki wg schematu Macieja → (2) notatki lądują w Livespace przy kontakcie → (3) wysyłka maila follow-up. Schemat notatek: SPYTAĆ MACIEJA (ma gotowy template). Pipeline: Happy Scribe API (trigger/poll) → AI processing → Livespace API (notes) → Gmail API (mail)</span></div>
         <div class="task"><div class="task-dot dot-todo"></div><span>Dashboard execution v1 (gotowce vs cel, obłożenie, KZ, budżet, &quot;robimy vs mówimy&quot;)</span></div>
@@ -310,10 +311,19 @@
 
 <div id="wins" class="view">
   <div class="kpi-bar">
-    <div class="kpi-card"><div class="kpi-val green">67</div><div class="kpi-label">Decyzji / akcji w marcu</div></div>
+    <div class="kpi-card"><div class="kpi-val green">68</div><div class="kpi-label">Decyzji / akcji w marcu</div></div>
   </div>
   <div class="section-title green">LOG OSIĄGNIĘĆ</div>
   <div class="wins-list">
+    <div class="win">
+      <div class="win-date">06.03.2026</div>
+      <div class="win-icon">&#9889;</div>
+      <div class="win-content">
+        <div class="win-title">Dashboard operacji — dane wsadowe wysłane do Olega</div>
+        <div class="win-desc">Dokument &quot;Dashboard operacji — wymagane dane wsadowe&quot; (DOCX + MD) wysłany do Olega przed spotkaniem. Dashboard = WSPÓLNE narzędzie Macieja i Olega, dane codziennie na żywo, Oleg jest użytkownikiem (ni</div>
+        <span class="win-tag tag-dokument">OPERACJE</span>
+      </div>
+    </div>
     <div class="win">
       <div class="win-date">06.03.2026</div>
       <div class="win-icon">&#9889;</div>
@@ -1127,7 +1137,7 @@ Przygotować ankietę anonimową. Przeprowadzić w marcu.
   </div>
 </div>
 
-<div class="auto-note">Auto-generowane z plan.md + decyzje.md | 06.03.2026 13:55 | co 30 min gdy komputer włączony</div>
+<div class="auto-note">Auto-generowane z plan.md + decyzje.md | 06.03.2026 14:25 | co 30 min gdy komputer włączony</div>
 
 <script>
 function showView(id, el, activeClass) {
