@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Execution — Dobrego Najmu 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Quicksand', sans-serif;
+    background: #1A163C;
+    color: #FFF8E1;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 32px;
+    border-bottom: 1px solid rgba(255,248,225,0.08);
+    position: sticky;
+    top: 0;
+    background: #1A163C;
+    z-index: 100;
+  }
+  .nav-logo { font-size: 22px; font-weight: 700; letter-spacing: 0.5px; }
+  .nav-tabs { display: flex; gap: 4px; margin-left: 32px; }
+  .nav-tab {
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    background: rgba(255,248,225,0.05);
+    color: rgba(255,248,225,0.5);
+    border: 1px solid rgba(255,248,225,0.08);
+    transition: all 0.2s;
+  }
+  .nav-tab:hover { background: rgba(255,248,225,0.08); color: rgba(255,248,225,0.7); }
+  .nav-tab.active { background: #FF691F; color: #1A163C; border-color: #FF691F; }
+  .nav-tab.active-green { background: #03B54D; color: #1A163C; border-color: #03B54D; }
+  .nav-tab.active-purple { background: #665BC2; color: #FFF8E1; border-color: #665BC2; }
+  .nav-date { margin-left: auto; font-size: 13px; color: rgba(255,248,225,0.35); font-weight: 600; }
+
+  .view { display: none; padding: 24px 32px; }
+  .view.active { display: block; }
+
+  /* KPI BAR */
+  .kpi-bar {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .kpi-card {
+    background: rgba(255,248,225,0.05);
+    border: 1px solid rgba(255,248,225,0.08);
+    border-radius: 10px;
+    padding: 14px 20px;
+    min-width: 140px;
+  }
+  .kpi-val { font-size: 28px; font-weight: 700; }
+  .kpi-label { font-size: 11px; color: rgba(255,248,225,0.4); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-top: 2px; }
+  .kpi-val.orange { color: #FF691F; }
+  .kpi-val.green { color: #03B54D; }
+  .kpi-val.yellow { color: #FFCC33; }
+  .kpi-val.purple { color: #665BC2; }
+
+  /* SECTION */
+  .section-title {
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding-left: 12px;
+    border-left: 3px solid #FF691F;
+    margin-bottom: 16px;
+    margin-top: 8px;
+  }
+  .section-title.green { border-left-color: #03B54D; }
+  .section-title.purple { border-left-color: #665BC2; }
+
+  /* WEEK GRID */
+  .weeks-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  @media (min-width: 1200px) { .weeks-grid { grid-template-columns: 1fr 1fr 1fr 1fr; } }
+
+  .week-card {
+    background: rgba(255,248,225,0.04);
+    border: 1px solid rgba(255,248,225,0.08);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .week-card.current { border-color: #FF691F; background: rgba(255,105,31,0.06); }
+  .week-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .week-num {
+    padding: 3px 10px;
+    border-radius: 5px;
+    font-size: 9px;
+    font-weight: 700;
+    background: rgba(255,248,225,0.1);
+    color: rgba(255,248,225,0.6);
+  }
+  .week-card.current .week-num { background: #FF691F; color: #1A163C; }
+  .week-dates { font-size: 11px; color: rgba(255,248,225,0.4); font-weight: 600; }
+  .week-badge-now {
+    font-size: 10px;
+    background: #FF691F;
+    color: #1A163C;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 700;
+    margin-left: auto;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .task {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    font-size: 13px;
+    line-height: 1.45;
+    color: rgba(255,248,225,0.78);
+    margin-bottom: 4px;
+  }
+  .task-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+  .dot-todo { background: rgba(255,248,225,0.2); }
+  .dot-doing { background: #FF691F; }
+  .dot-done { background: #03B54D; }
+  .dot-deadline { background: #FF4444; }
+  .task b { color: #FFF8E1; font-weight: 700; font-size: 13px; }
+  .task .owner {
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    background: rgba(255,248,225,0.08);
+    color: rgba(255,248,225,0.45);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .task .deadline {
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    background: rgba(255,68,68,0.15);
+    color: #FF6B6B;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .task-sub {
+    padding-left: 14px;
+    font-size: 11px;
+    color: rgba(255,248,225,0.45);
+    margin-bottom: 3px;
+  }
+
+  /* DEADLINES */
+  .deadlines {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .dl-card {
+    background: rgba(255,68,68,0.08);
+    border: 1px solid rgba(255,68,68,0.2);
+    border-radius: 8px;
+    padding: 10px 14px;
+    min-width: 200px;
+  }
+  .dl-date { font-size: 22px; font-weight: 700; color: #FF6B6B; }
+  .dl-text { font-size: 13px; color: rgba(255,248,225,0.7); margin-top: 2px; }
+  .dl-who { font-size: 10px; color: rgba(255,248,225,0.35); margin-top: 2px; font-weight: 600; }
+
+  /* WINS LOG */
+  .wins-list { display: flex; flex-direction: column; gap: 8px; }
+  .win {
+    display: flex;
+    gap: 14px;
+    background: rgba(3,181,77,0.04);
+    border: 1px solid rgba(3,181,77,0.12);
+    border-radius: 10px;
+    padding: 12px 16px;
+    align-items: flex-start;
+  }
+  .win-date {
+    font-size: 14px;
+    font-weight: 700;
+    color: #03B54D;
+    white-space: nowrap;
+    min-width: 50px;
+    flex-shrink: 0;
+  }
+  .win-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+    margin-top: -1px;
+  }
+  .win-content { flex: 1; }
+  .win-title { font-size: 14px; font-weight: 700; color: #FFF8E1; }
+  .win-desc { font-size: 12px; color: rgba(255,248,225,0.55); margin-top: 2px; }
+  .win-tag {
+    display: inline-block;
+    font-size: 9px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+  }
+  .tag-decyzja { background: rgba(255,105,31,0.15); color: #FF691F; }
+  .tag-dokument { background: rgba(102,91,194,0.15); color: #665BC2; }
+  .tag-wyslane { background: rgba(3,181,77,0.15); color: #03B54D; }
+  .tag-integracja { background: rgba(255,204,51,0.15); color: #FFCC33; }
+  .tag-analiza { background: rgba(0,150,255,0.15); color: #4FC3F7; }
+  .tag-spotkanie { background: rgba(255,248,225,0.08); color: rgba(255,248,225,0.5); }
+
+  /* MONTH STRATEGIC VIEW */
+  .month-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 1000px) { .month-grid { grid-template-columns: 1fr; } }
+  .month-card {
+    background: rgba(255,248,225,0.04);
+    border: 1px solid rgba(255,248,225,0.08);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  .month-card.current { border-color: #FF691F; }
+  .month-name {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .month-name.orange { color: #FF691F; }
+  .month-name.yellow { color: #FFCC33; }
+  .month-name.green { color: #03B54D; }
+  .month-theme {
+    font-size: 11px;
+    color: rgba(255,248,225,0.4);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .month-items { display: flex; flex-direction: column; gap: 4px; }
+
+  /* LEGEND */
+  .legend {
+    display: flex;
+    gap: 16px;
+    padding: 10px 0;
+    border-top: 1px solid rgba(255,248,225,0.06);
+    margin-top: 16px;
+  }
+  .leg-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: rgba(255,248,225,0.4); }
+  .leg-dot { width: 8px; height: 8px; border-radius: 50%; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="nav-logo">DOBREGO NAJMU</div>
+  <div class="nav-tabs">
+    <div class="nav-tab active" onclick="showView('ops', this)">Operacyjny</div>
+    <div class="nav-tab" onclick="showView('strategic', this, 'active-purple')">Strategiczny</div>
+    <div class="nav-tab" onclick="showView('wins', this, 'active-green')">Wins Log</div>
+  </div>
+  <div class="nav-date">Ostatnia aktualizacja: 06.03.2026</div>
+</div>
+
+<!-- ====== VIEW 1: OPERACYJNY ====== -->
+<div id="ops" class="view active">
+
+  <!-- KPI -->
+  <div class="kpi-bar">
+    <div class="kpi-card"><div class="kpi-val orange">83%</div><div class="kpi-label">Obłożenie (cel 95%)</div></div>
+    <div class="kpi-card"><div class="kpi-val yellow">234</div><div class="kpi-label">Wolne pokoje</div></div>
+    <div class="kpi-card"><div class="kpi-val green">17</div><div class="kpi-label">Decyzji aktywnych</div></div>
+    <div class="kpi-card"><div class="kpi-val purple">18</div><div class="kpi-label">Tasków IT (roadmapa)</div></div>
+    <div class="kpi-card"><div class="kpi-val orange">4</div><div class="kpi-label">Deadline'ów &lt;7 dni</div></div>
+  </div>
+
+  <!-- DEADLINES -->
+  <div class="section-title" style="border-left-color: #FF4444;">NADCHODZĄCE DEADLINE'Y</div>
+  <div class="deadlines">
+    <div class="dl-card">
+      <div class="dl-date">07-08.03</div>
+      <div class="dl-text">Start Facebook — dedykowana osoba wrzuca ogłoszenia</div>
+      <div class="dl-who">Dziewczyny (nowa osoba)</div>
+    </div>
+    <div class="dl-card">
+      <div class="dl-date">10.03</div>
+      <div class="dl-text">Start kontaktów z terenu — 20/tydz.</div>
+      <div class="dl-who">Diana + sprzedawcy</div>
+    </div>
+    <div class="dl-card">
+      <div class="dl-date">12.03</div>
+      <div class="dl-text">Spotkanie follow-up sprzedaż 9:00-11:00</div>
+      <div class="dl-who">Maciej + zespół (bez Marii/Zuzi)</div>
+    </div>
+    <div class="dl-card">
+      <div class="dl-date">12.03</div>
+      <div class="dl-text">Deadline ankiety dyrektorów (Diana, Paweł, Marek)</div>
+      <div class="dl-who">Diana, Paweł, Marek</div>
+    </div>
+    <div class="dl-card">
+      <div class="dl-date">13.03</div>
+      <div class="dl-text">Feedback roadmapa IT najem (v3)</div>
+      <div class="dl-who">Kamila + Paweł</div>
+    </div>
+    <div class="dl-card">
+      <div class="dl-date">14.03</div>
+      <div class="dl-text">Prep Week: landing 100M, ebook, brief Kuba</div>
+      <div class="dl-who">CTO + CMO</div>
+    </div>
+    <div class="dl-card">
+      <div class="dl-date">15.03</div>
+      <div class="dl-text">AIBL — wszyscy dyrektorzy przeszli 10 lekcji</div>
+      <div class="dl-who">Marek, Oleg, Paweł, Kamila, Diana, Karolina</div>
+    </div>
+  </div>
+
+  <!-- THIS WEEK -->
+  <div class="section-title">TEN TYDZIEŃ — 2-7 MARCA</div>
+  <div class="weeks-grid" style="grid-template-columns: 1fr 1fr;">
+
+    <div class="week-card current">
+      <div class="week-header">
+        <div class="week-num">TYG 1</div>
+        <div class="week-dates">2 — 7 MARCA</div>
+        <div class="week-badge-now">TERAZ</div>
+      </div>
+      <div class="task"><div class="task-dot dot-doing"></div><span><b>Obniżki cen ~20%</b> — masowy import/eksport <span class="owner">Kamila</span></span></div>
+      <div class="task"><div class="task-dot dot-doing"></div><span><b>Facebook start</b> — dedykowana osoba, weekend 7-8.03 <span class="owner">Nowa</span></span></div>
+      <div class="task"><div class="task-dot dot-done"></div><span><b>Roadmapa IT najem v3</b> — wysłana Kamili i Pawłowi <span class="owner">CTO</span></span></div>
+      <div class="task"><div class="task-dot dot-done"></div><span><b>Publer wybrany</b> — narzędzie social media ($10/msc) <span class="owner">CTO</span></span></div>
+      <div class="task"><div class="task-dot dot-done"></div><span><b>Brief biuro</b> — wysłany do Karoliny (6 stron) <span class="owner">CTO</span></span></div>
+      <div class="task"><div class="task-dot dot-done"></div><span><b>Audyt portali ogłoszeniowych</b> — przekazany Kamili i Dianie <span class="owner">CTO</span></span></div>
+      <div class="task"><div class="task-dot dot-doing"></div><span><b>Sprzedawcy terenowi</b> — audyt, rozmowy o wieczorach/weekendach <span class="owner">Karolina/Diana</span></span></div>
+      <div class="task"><div class="task-dot dot-todo"></div><span><b>Claude for Teams</b> — kupić 5 seats <span class="owner">CEO</span></span></div>
+      <div class="task"><div class="task-dot dot-todo"></div><span><b>AIBL 10 lekcji</b> — wszyscy dyrektorzy <span class="deadline">DL 15.03</span></span></div>
+    </div>
+
+    <div class="week-card">
+      <div class="week-header">
+        <div class="week-num">TYG 2</div>
+        <div class="week-dates">9 — 14 MARCA</div>
+      </div>
+      <div class="task"><div class="task-dot dot-deadline"></div><span><b>Spotkanie sprzedaż</b> czw 12.03, 9-11 <span class="deadline">12.03</span></span></div>
+      <div class="task"><div class="task-dot dot-deadline"></div><span><b>Ankiety dyrektorów</b> — Diana, Paweł, Marek <span class="deadline">12.03</span></span></div>
+      <div class="task"><div class="task-dot dot-deadline"></div><span><b>Roadmapa IT najem</b> — feedback Kamila+Paweł <span class="deadline">13.03</span></span></div>
+      <div class="task"><div class="task-dot dot-todo"></div><span><b>Shared Projects Teams</b> — "DN Wspólny" + per dyrektor <span class="owner">CTO</span></span></div>
+      <div class="task"><div class="task-dot dot-todo"></div><span><b>Google Drive /AI-Kontekst-DN/</b> + Drive Integration <span class="owner">CTO</span></span></div>
+      <div class="task"><div class="task-dot dot-todo"></div><span><b>Prep Week 100M</b> — landing, ebook, brief Kuba <span class="owner">CTO+CMO</span></span></div>
+      <div class="task"><div class="task-dot dot-todo"></div><span><b>Kontakty z terenu 20/tydz.</b> — start <span class="owner">Diana</span></span></div>
+      <div class="task"><div class="task-dot dot-todo"></div><span><b>Nearby: sklep z pokojami</b> <span class="owner">CTO+Diana</span></span></div>
+    </div>
+
+  </div>
+
+  <!-- NEXT WEEKS -->
+  <div class="section-title">NASTĘPNE TYGODNIE</div>
+  <div class="weeks-grid">
+    <div class="week-card">
+      <div class="week-header">
+        <div class="week-num">TYG 3</div>
+        <div class="week-dates">16 — 21 MARCA</div>
+      </div>
+      <div class="task"><div class="task-dot dot-todo"></div><span><b>Launch 100M</b> — LinkedIn seria, landing live <span class="owner">CMO</span></span></div>
+      <div class="task"><div class="task-dot dot-todo"></div><span><b>ROY v1</b> — procesor spotkań (HS → decyzje → tracking) <span class="owner">CTO</span></span></div>
+      <div class="task"><div class="task-dot dot-todo"></div><span><b>Automat START DN</b> — transkrypcja → notatki → Livespace → mail <span class="owner">CTO</span></span></div>
+      <div class="task"><div class="task-dot dot-todo"></div><span><b>Persona najemcy</b> — mini-survey z handlowcami <span class="owner">CSO+CMO</span></span></div>
+    </div>
+    <div class="week-card">
+      <div class="week-header">
+        <div class="week-num">TYG 4</div>
+        <div class="week-dates">23 — 31 MARCA</div>
+      </div>
+      <div class="task"><div class="task-dot dot-todo"></div><span><b>Dashboard execution v1</b> — gotowce, obłożenie, KZ <span class="owner">CTO</span></span></div>
+      <div class="task"><div class="task-dot dot-todo"></div><span><b>Auto-publikacja</b> — Publer (LinkedIn + FB) <span class="owner">CTO</span></span></div>
+      <div class="task"><div class="task-dot dot-todo"></div><span><b>Newsletter MailerLite API</b> — auto-send <span class="owner">CTO</span></span></div>
+      <div class="task"><div class="task-dot dot-todo"></div><span><b>Budżety per dział</b> <span class="owner">Paweł</span></span></div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="leg-item"><div class="leg-dot" style="background:#03B54D"></div> Zrobione</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#FF691F"></div> W toku</div>
+    <div class="leg-item"><div class="leg-dot" style="background:rgba(255,248,225,0.2)"></div> Do zrobienia</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#FF4444"></div> Deadline</div>
+  </div>
+</div>
+
+<!-- ====== VIEW 2: STRATEGICZNY ====== -->
+<div id="strategic" class="view">
+
+  <div class="kpi-bar">
+    <div class="kpi-card"><div class="kpi-val orange">48</div><div class="kpi-label">Cel gotowców 2026</div></div>
+    <div class="kpi-card"><div class="kpi-val green">95%</div><div class="kpi-label">Cel obłożenia</div></div>
+    <div class="kpi-card"><div class="kpi-val yellow">1,2M</div><div class="kpi-label">Cel dywidendy PLN</div></div>
+    <div class="kpi-card"><div class="kpi-val purple">6</div><div class="kpi-label">Dyrektorów w AI</div></div>
+  </div>
+
+  <div class="section-title purple">ROADMAPA — WIDOK MIESIĘCZNY</div>
+
+  <div class="month-grid">
+    <div class="month-card current">
+      <div class="month-name orange">MARZEC</div>
+      <div class="month-theme">Fundament AI + Ofensywa sprzedażowa</div>
+      <div class="month-items">
+        <div class="task"><div class="task-dot dot-doing"></div><span><b>Claude for Teams</b> — 5 seats + shared projects</span></div>
+        <div class="task"><div class="task-dot dot-doing"></div><span><b>Obniżki cen ~20%</b> + Facebook (100 umów)</span></div>
+        <div class="task"><div class="task-dot dot-done"></div><span><b>Roadmapa IT najem</b> — mapa systemów v3</span></div>
+        <div class="task"><div class="task-dot dot-done"></div><span><b>Audyt portali</b> — 341k/rok, Kamila+Diana prowadzą</span></div>
+        <div class="task"><div class="task-dot dot-done"></div><span><b>Biuro</b> — brief Karolina, 3 ścieżki równolegle</span></div>
+        <div class="task"><div class="task-dot dot-doing"></div><span><b>Prep Week 100M</b> — landing, ebook, brief WBIZNES</span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>ROY v1</b> — procesor spotkań</span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>Publer + MailerLite</b> — auto-publikacja</span></div>
+      </div>
+    </div>
+
+    <div class="month-card">
+      <div class="month-name yellow">KWIECIEŃ</div>
+      <div class="month-theme">Silnik egzekucji</div>
+      <div class="month-items">
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>Livespace API LIVE</b> — pipeline real-time</span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>Feedback portale</b> — Kamila/Diana: CPL, Rent PRO, A/B</span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>ROY v2</b> — tracking zadań + alerty</span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>Odoo 19</b> — pipeline + WhatsApp + SMS</span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>Content pipeline 2.0</b> — auto LI+FB+newsletter</span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>Launch 100M</b> — seria LinkedIn, ebook, PR</span></div>
+      </div>
+    </div>
+
+    <div class="month-card">
+      <div class="month-name green">MAJ — LIPIEC</div>
+      <div class="month-theme">Wdrożenia + optymalizacja</div>
+      <div class="month-items">
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>Odoo 19 wdrożenie</b> — Kamila</span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>SON 3.0 wdrożenie</b> — Paweł</span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>Centralka nowa</b> + integracja Odoo</span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>OLX Bot + auto-import</b> via API</span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>Dashboard v3</b> — pełna automatyzacja</span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>Biuro nowe</b> — wizytacje + shortlista</span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>Webinar Brunson</b> + testimoniale</span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>Stress-test</b> — system bez Macieja 1 tydzień</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q3-Q4 -->
+  <div class="section-title green">Q3-Q4 — SEZON + 10-LECIE</div>
+  <div class="month-grid" style="grid-template-columns: 1fr 1fr;">
+    <div class="month-card">
+      <div class="month-name green">SIERPIEŃ — LISTOPAD</div>
+      <div class="month-theme">Sezon sprzedaży — zero nowych projektów</div>
+      <div class="month-items">
+        <div class="task"><div class="task-dot dot-todo"></div><span>System działa 24/7. Dyrektorzy = generałowie.</span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span>AI raportuje, monitoruje, alarmuje.</span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>Chatbot + Voicebot</b> (nowa centralka)</span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>Portal ogłoszeniowy</b> — prototyp (wzór PP Housing)</span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>SON 3.0 ↔ Odoo ↔ Copernicus</b> — integracja</span></div>
+      </div>
+    </div>
+    <div class="month-card">
+      <div class="month-name" style="color: #E040FB;">WRZESIEŃ — PAŹDZIERNIK</div>
+      <div class="month-theme">Kampania 10-lecia Dobrego Najmu</div>
+      <div class="month-items">
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>Kampania rocznicowa</b> — 10 lat firmy</span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>Książka</b> — "10 lekcji ze 100M"</span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>Film dokumentalny</b></span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>PR</b> — media, wywiady, podcasty</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== VIEW 3: WINS LOG ====== -->
+<div id="wins" class="view">
+
+  <div class="kpi-bar">
+    <div class="kpi-card"><div class="kpi-val green">23</div><div class="kpi-label">Wins w marcu</div></div>
+    <div class="kpi-card"><div class="kpi-val orange">12</div><div class="kpi-label">Decyzji podjętych</div></div>
+    <div class="kpi-card"><div class="kpi-val purple">8</div><div class="kpi-label">Dokumentów wysłanych</div></div>
+    <div class="kpi-card"><div class="kpi-val yellow">5</div><div class="kpi-label">Integracji uruchomionych</div></div>
+  </div>
+
+  <div class="section-title green">LOG OSIĄGNIĘĆ — MARZEC 2026</div>
+
+  <div class="wins-list">
+
+    <div class="win">
+      <div class="win-date">06.03</div>
+      <div class="win-icon">&#9889;</div>
+      <div class="win-content">
+        <div class="win-title">Roadmapa IT sprzedaż/marketing najemców — v3 wysłana</div>
+        <div class="win-desc">Mapa 10 systemów, 18 tasków w 3 fazach, SON 2.0/3.0, Copernicus vs Odoo AI. Wysłana Kamili i Pawłowi na WhatsApp.</div>
+        <span class="win-tag tag-dokument">dokument</span>
+        <span class="win-tag tag-wyslane">wysłane</span>
+      </div>
+    </div>
+
+    <div class="win">
+      <div class="win-date">06.03</div>
+      <div class="win-icon">&#128176;</div>
+      <div class="win-content">
+        <div class="win-title">Obniżki cen najmu ~20% — decyzja natychmiastowa</div>
+        <div class="win-desc">234 wolne pokoje, 83% obłożenie. Masowy eksport/import cen. Priorytet: AL0, AXL.</div>
+        <span class="win-tag tag-decyzja">decyzja</span>
+      </div>
+    </div>
+
+    <div class="win">
+      <div class="win-date">06.03</div>
+      <div class="win-icon">&#128242;</div>
+      <div class="win-content">
+        <div class="win-title">Facebook — dedykowana osoba, cel 100 umów</div>
+        <div class="win-desc">Insight z Housemates: 96,4% obłożenia FB-only. Nowe mieszkania test FB-only. Start weekend 7-8.03.</div>
+        <span class="win-tag tag-decyzja">decyzja</span>
+      </div>
+    </div>
+
+    <div class="win">
+      <div class="win-date">06.03</div>
+      <div class="win-icon">&#128270;</div>
+      <div class="win-content">
+        <div class="win-title">Audyt portali ogłoszeniowych — przekazany Kamili i Dianie</div>
+        <div class="win-desc">341k PLN/rok na portale. 3 z 8 twierdzeń Deep Research błędne. Pakiety Midi OLX = 72k/rok dźwignia.</div>
+        <span class="win-tag tag-dokument">dokument</span>
+        <span class="win-tag tag-wyslane">wysłane</span>
+      </div>
+    </div>
+
+    <div class="win">
+      <div class="win-date">06.03</div>
+      <div class="win-icon">&#127970;</div>
+      <div class="win-content">
+        <div class="win-title">Biuro — brief 6-stronowy wysłany do Karoliny</div>
+        <div class="win-desc">3 ścieżki równolegle: zamiana w BTD, nowe biuro, wcześniejsze wyjście. Oszczędność 100-175k/rok.</div>
+        <span class="win-tag tag-dokument">dokument</span>
+        <span class="win-tag tag-wyslane">wysłane</span>
+      </div>
+    </div>
+
+    <div class="win">
+      <div class="win-date">06.03</div>
+      <div class="win-icon">&#128640;</div>
+      <div class="win-content">
+        <div class="win-title">Publer wybrany — narzędzie auto-publikacji social media</div>
+        <div class="win-desc">Porównano 5 opcji. Publer: pełne REST API, $10/msc, 13 platform. Buffer/Hootsuite/Later/Planable odrzucone.</div>
+        <span class="win-tag tag-decyzja">decyzja</span>
+        <span class="win-tag tag-integracja">integracja</span>
+      </div>
+    </div>
+
+    <div class="win">
+      <div class="win-date">06.03</div>
+      <div class="win-icon">&#127919;</div>
+      <div class="win-content">
+        <div class="win-title">Kierunek strategiczny: sprzedaż zdalna najmu + własny portal</div>
+        <div class="win-desc">Przejście na model FB+telefon+filmiki. Spotkania terenowe do minimum. Portal jak HousingAnywhere.</div>
+        <span class="win-tag tag-decyzja">decyzja</span>
+      </div>
+    </div>
+
+    <div class="win">
+      <div class="win-date">06.03</div>
+      <div class="win-icon">&#128100;</div>
+      <div class="win-content">
+        <div class="win-title">Audyt sprzedawców terenowych — uruchomiony</div>
+        <div class="win-desc">"Albo zmienimy im podejście, albo zmienimy ludzi." Weryfikacja 7-10, wieczory, weekendy. Deadline: 2 msc.</div>
+        <span class="win-tag tag-decyzja">decyzja</span>
+      </div>
+    </div>
+
+    <div class="win">
+      <div class="win-date">05.03</div>
+      <div class="win-icon">&#128231;</div>
+      <div class="win-content">
+        <div class="win-title">Maile do kadry — Oleg (dowozy + magazyn)</div>
+        <div class="win-desc">Dwa maile wysłane: dowozy/dostawy + moduł magazynowy. AI w kopii.</div>
+        <span class="win-tag tag-wyslane">wysłane</span>
+      </div>
+    </div>
+
+    <div class="win">
+      <div class="win-date">05.03</div>
+      <div class="win-icon">&#128200;</div>
+      <div class="win-content">
+        <div class="win-title">Analiza biura — 3 raporty Deep Research</div>
+        <div class="win-desc">164,5 m², ~22k/msc, przepłacone o 100-175k/rok. Benchmark rynkowy przygotowany.</div>
+        <span class="win-tag tag-analiza">analiza</span>
+        <span class="win-tag tag-dokument">dokument</span>
+      </div>
+    </div>
+
+    <div class="win">
+      <div class="win-date">05.03</div>
+      <div class="win-icon">&#128196;</div>
+      <div class="win-content">
+        <div class="win-title">Google Docs — Analiza KZ + ADN Pipeline wgrane</div>
+        <div class="win-desc">Dwa dokumenty strategiczne wgrane na Google Docs do współpracy.</div>
+        <span class="win-tag tag-dokument">dokument</span>
+        <span class="win-tag tag-integracja">integracja</span>
+      </div>
+    </div>
+
+    <div class="win">
+      <div class="win-date">04.03</div>
+      <div class="win-icon">&#128220;</div>
+      <div class="win-content">
+        <div class="win-title">FSWZ — Pakiet zmian statutu wysłany do zarządu</div>
+        <div class="win-desc">7 stron PDF + prompt AI. Deadline RN: 15.03, spotkanie RN+Zarząd: 2. połowa marca.</div>
+        <span class="win-tag tag-dokument">dokument</span>
+        <span class="win-tag tag-wyslane">wysłane</span>
+      </div>
+    </div>
+
+    <div class="win">
+      <div class="win-date">27.02</div>
+      <div class="win-icon">&#127891;</div>
+      <div class="win-content">
+        <div class="win-title">Board meeting — Roadmapa AI zatwierdzona</div>
+        <div class="win-desc">3 filary: sprzedaż, koszty, operacje. Claude for Teams. Execution > twórczość. Marzec-lipiec plan.</div>
+        <span class="win-tag tag-decyzja">decyzja</span>
+        <span class="win-tag tag-spotkanie">spotkanie</span>
+      </div>
+    </div>
+
+    <div class="win">
+      <div class="win-date">27.02</div>
+      <div class="win-icon">&#128202;</div>
+      <div class="win-content">
+        <div class="win-title">DN Marketing Report — natywny Google Sheet z dashboardem</div>
+        <div class="win-desc">Skonwertowano xlsx → natywny Sheet. 3 wykresy, 55 formuł, KPI z Livespace API.</div>
+        <span class="win-tag tag-integracja">integracja</span>
+      </div>
+    </div>
+
+    <div class="win">
+      <div class="win-date">26.02</div>
+      <div class="win-icon">&#128279;</div>
+      <div class="win-content">
+        <div class="win-title">Livespace CRM API — podłączone</div>
+        <div class="win-desc">417 deali, 20 źródeł, 17 custom fields. Win Rate: Partner 50%, Organiczny 35%, YT 7%.</div>
+        <span class="win-tag tag-integracja">integracja</span>
+      </div>
+    </div>
+
+    <div class="win">
+      <div class="win-date">26.02</div>
+      <div class="win-icon">&#128176;</div>
+      <div class="win-content">
+        <div class="win-title">Analiza CPL styczeń — pełny raport + dane w Google Sheet</div>
+        <div class="win-desc">YT=100% kwalifikacji (0 zł). Everwebinar=0 kwalifikacji z 67 leadów. Akademia=najtańszy CPL kwalif.</div>
+        <span class="win-tag tag-analiza">analiza</span>
+      </div>
+    </div>
+
+    <div class="win">
+      <div class="win-date">26.02</div>
+      <div class="win-icon">&#128101;</div>
+      <div class="win-content">
+        <div class="win-title">YouTube Analytics API — podłączone</div>
+        <div class="win-desc">Retention, traffic sources, demographics, revenue. Brand Account OAuth.</div>
+        <span class="win-tag tag-integracja">integracja</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function showView(id, el, activeClass) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => {
+    t.classList.remove('active', 'active-green', 'active-purple');
+  });
+  document.getElementById(id).classList.add('active');
+  el.classList.add(activeClass || 'active');
+}
+</script>
+
+</body>
+</html>
