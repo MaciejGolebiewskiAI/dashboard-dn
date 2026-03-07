@@ -561,6 +561,52 @@
     margin-top: 2px;
     word-break: break-all;
   }
+
+  /* ADMIN TAB */
+  .nav-tab.active-admin { background: rgba(255,248,225,0.2); color: #FFF8E1; border-color: rgba(255,248,225,0.3); }
+  .section-title.admin { border-left-color: rgba(255,248,225,0.3); }
+  .source-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .source-table th {
+    text-align: left;
+    padding: 10px 12px;
+    color: rgba(255,248,225,0.5);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba(255,248,225,0.1);
+  }
+  .source-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(255,248,225,0.05);
+    color: rgba(255,248,225,0.7);
+    vertical-align: top;
+  }
+  .source-table td:first-child { color: #FFF8E1; font-weight: 700; }
+  .source-table a { color: #FFCC33; text-decoration: none; word-break: break-all; }
+  .source-table a:hover { text-decoration: underline; }
+  .source-badge {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-right: 4px;
+  }
+  .badge-active { background: rgba(3,181,77,0.15); color: #03B54D; }
+  .badge-pending { background: rgba(255,204,51,0.15); color: #FFCC33; }
+  .badge-planned { background: rgba(255,248,225,0.08); color: rgba(255,248,225,0.4); }
+  .tab-ref {
+    display: inline-block;
+    font-size: 10px;
+    padding: 1px 6px;
+    border-radius: 3px;
+    background: rgba(255,248,225,0.06);
+    color: rgba(255,248,225,0.4);
+    margin-right: 3px;
+    margin-top: 2px;
+  }
 </style>
 </head>
 <body>
@@ -576,6 +622,7 @@
     <div class="nav-tab" onclick="showView('marketing', this, 'active-pink')">Marketing</div>
     <div class="nav-tab" onclick="showView('ai', this, 'active-teal')">AI Roadmap</div>
     <div class="nav-tab" onclick="showView('wins', this, 'active-green')">Wins Log</div>
+    <div class="nav-tab" onclick="showView('admin', this, 'active-admin')">Admin</div>
   </div>
   <div class="nav-date">Ostatnia aktualizacja: 07.03.2026</div>
 </div>
@@ -1764,11 +1811,362 @@
   </div>
 </div>
 
+<!-- ====== VIEW 8: ADMIN ====== -->
+<div id="admin" class="view">
+
+  <div class="kpi-bar">
+    <div class="kpi-card"><div class="kpi-val" style="color:rgba(255,248,225,0.6)">9</div><div class="kpi-label">API podlaczone</div></div>
+    <div class="kpi-card"><div class="kpi-val" style="color:rgba(255,248,225,0.6)">6</div><div class="kpi-label">Arkusze Google</div></div>
+    <div class="kpi-card"><div class="kpi-val" style="color:rgba(255,248,225,0.6)">5</div><div class="kpi-label">API w kolejce</div></div>
+    <div class="kpi-card"><div class="kpi-val" style="color:rgba(255,248,225,0.6)">3</div><div class="kpi-label">Pliki lokalne</div></div>
+  </div>
+
+  <!-- SECTION 1: GOOGLE SHEETS -->
+  <div class="section-title admin">GOOGLE SHEETS — ZRODLA DANYCH FINANSOWYCH</div>
+  <div class="info-section">
+    <table class="source-table">
+      <thead>
+        <tr>
+          <th>Arkusz</th>
+          <th>Uzywa zakladka</th>
+          <th>Link</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>PKO Wskazniki — OBLOZENIE</td>
+          <td><span class="tab-ref">Finanse</span> przychody per spolka (AL0, AL1, AXL, ALZ, RED, LH, SUMA)</td>
+          <td><a href="https://docs.google.com/spreadsheets/d/1aof-FAUD1trCdvef-oUzaqHTPgvCU76yTUCR6BQYDtU/edit" target="_blank">Otworz arkusz</a></td>
+          <td><span class="source-badge badge-active">aktywne</span></td>
+        </tr>
+        <tr>
+          <td>KZ Ad Libertatem</td>
+          <td><span class="tab-ref">Finanse</span> KZ suma, %, per najemce, struktura kosztow</td>
+          <td><a href="https://docs.google.com/spreadsheets/d/1AURBZ3q9mrq2d7OYdGhIlBGZxa6LySNnSfWdSJ3tmZM/edit" target="_blank">Otworz arkusz</a></td>
+          <td><span class="source-badge badge-active">aktywne</span></td>
+        </tr>
+        <tr>
+          <td>Pracownicy, pensje, premie</td>
+          <td><span class="tab-ref">Finanse</span> KZ wynagrodzenia (agregacja — nie indywidualne)</td>
+          <td><a href="https://docs.google.com/spreadsheets/d/1h-1nq58A04-7WolYZf8-D4bMcpX7r7D5q-fK4eAcNQw/edit" target="_blank">Otworz arkusz</a></td>
+          <td><span class="source-badge badge-active">aktywne</span></td>
+        </tr>
+        <tr>
+          <td>AL Holding raport finansowy</td>
+          <td>Do podpiecia: RZiS per spolka, plan kont, marza</td>
+          <td><a href="https://docs.google.com/spreadsheets/d/1uJU_Ug2BrMWY1hDPyA8NDV5g3igzZqSqA1aA2wIipWE/edit" target="_blank">Otworz arkusz</a></td>
+          <td><span class="source-badge badge-pending">do podpiecia</span></td>
+        </tr>
+        <tr>
+          <td>DN Marketing Report (WBiznes)</td>
+          <td><span class="tab-ref">Marketing</span> KPI marketingowe, CPL, leady per zrodlo</td>
+          <td><a href="https://docs.google.com/spreadsheets/d/1dxPRrb8AhUkQdNdkWktyCQPWYctn8V91eUSU-xb7g5M/edit" target="_blank">Otworz arkusz</a></td>
+          <td><span class="source-badge badge-active">aktywne</span></td>
+        </tr>
+        <tr>
+          <td>Prognoza czynszow 2025/2026</td>
+          <td>Do podpiecia: prognoza vs realizacja</td>
+          <td><a href="https://docs.google.com/spreadsheets/d/1Sx6BB663tGWRRajVZ51teXpEWonLuuYyU1gW11I_epE/edit" target="_blank">Otworz arkusz</a></td>
+          <td><span class="source-badge badge-pending">do podpiecia</span></td>
+        </tr>
+        <tr>
+          <td>Koszty na najemce KZ/1N</td>
+          <td>Referencja: szczegolowa baza kosztow pracy</td>
+          <td><a href="https://docs.google.com/spreadsheets/d/1R2YmphQQiuBjCKSfeFK2v7aIPeYEHtkf9_ZEZdRtHN8/edit" target="_blank">Otworz arkusz</a></td>
+          <td><span class="source-badge badge-active">aktywne</span></td>
+        </tr>
+        <tr>
+          <td>Rozliczenia remontow i GOT</td>
+          <td>Do podpiecia: koszty adaptacji, flipow</td>
+          <td><a href="https://docs.google.com/spreadsheets/d/15KZctUXknKe2zMF78zEoiJu9lR93KmBajYCPh3kM1Ks/edit" target="_blank">Otworz arkusz</a></td>
+          <td><span class="source-badge badge-pending">do podpiecia</span></td>
+        </tr>
+        <tr>
+          <td>CRM Inwestorzy Gotowce</td>
+          <td><span class="tab-ref">Gotowce</span> do podpiecia po Livespace API</td>
+          <td><a href="https://docs.google.com/spreadsheets/d/1v486NNPBcWw-vh7F_DcvlwB2CP1OwQfoUxxmkZvT91w/edit" target="_blank">Otworz arkusz</a></td>
+          <td><span class="source-badge badge-pending">do podpiecia</span></td>
+        </tr>
+        <tr>
+          <td>Plan publikacji YT</td>
+          <td><span class="tab-ref">Marketing</span> harmonogram filmow</td>
+          <td><a href="https://docs.google.com/spreadsheets/d/1_YSgX-o9eR-wB_yUcYUE9JxunEzjvs3KEtL-xI9v4XE/edit" target="_blank">Otworz arkusz</a></td>
+          <td><span class="source-badge badge-active">aktywne</span></td>
+        </tr>
+        <tr>
+          <td>Podwyzki Zarzadzanie</td>
+          <td>Referencja: stawki, umowy najmu zarzadczego</td>
+          <td><a href="https://docs.google.com/spreadsheets/d/1dGOXYNwQgTiu_zK546kXCQ6Sifo03o0CU9EhxlXcmBw/edit" target="_blank">Otworz arkusz</a></td>
+          <td><span class="source-badge badge-active">aktywne</span></td>
+        </tr>
+        <tr>
+          <td>Pozyczki w grupie AL LH</td>
+          <td>Referencja: wewnetrzne pozyczki spolkowe</td>
+          <td><a href="https://docs.google.com/spreadsheets/d/1j-pEe7W1wcfQQA3ZoWqv57derBb5ja_aguoUcmErzw8/edit" target="_blank">Otworz arkusz</a></td>
+          <td><span class="source-badge badge-active">aktywne</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SECTION 2: GOOGLE DOCS -->
+  <div class="section-title admin">GOOGLE DOCS — DOKUMENTY STRATEGICZNE</div>
+  <div class="info-section">
+    <table class="source-table">
+      <thead>
+        <tr>
+          <th>Dokument</th>
+          <th>Uzywa zakladka</th>
+          <th>Link</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Plan Ofensywy 100M v3</td>
+          <td><span class="tab-ref">Marketing</span><span class="tab-ref">Gotowce</span> strategia marzec-pazdziernik</td>
+          <td><a href="https://docs.google.com/document/d/1zBO0MvpGaUkYycWUdFy6OGJV1rcefwWk4liSGvh4PQk/edit" target="_blank">Otworz dokument</a></td>
+        </tr>
+        <tr>
+          <td>Webinar Brunson — skrypt</td>
+          <td><span class="tab-ref">Marketing</span> skrypt webinaru</td>
+          <td><a href="https://docs.google.com/document/d/1SW84h6OGqmyk7srZnCgbLpGFzVTDU2SmrR6FZI8g7zA/edit" target="_blank">Otworz dokument</a></td>
+        </tr>
+        <tr>
+          <td>Analiza KZ — scenariusze</td>
+          <td><span class="tab-ref">Finanse</span> scenariusze redukcji KZ</td>
+          <td><a href="https://docs.google.com/document/d/17wxbCQyML0b2mAU8Dy2oxKCCwwDKCiAVocQHvGnkHjg/edit" target="_blank">Otworz dokument</a></td>
+        </tr>
+        <tr>
+          <td>Analiza KZ — arkusz</td>
+          <td><span class="tab-ref">Finanse</span> szczegolowa analiza kosztow</td>
+          <td><a href="https://docs.google.com/document/d/1X_3EZhymnLQiiq_P6PBMTeMl5jqAz7jSPWEZoc4RvlY/edit" target="_blank">Otworz dokument</a></td>
+        </tr>
+        <tr>
+          <td>ADN Pipeline / Kurs AI</td>
+          <td><span class="tab-ref">Strategiczny</span> Akademia Dobrego Najmu</td>
+          <td><a href="https://docs.google.com/document/d/1TULO0a4tu5FirOYubmsMynMkqb6vYf5hNkZ600xB5q8/edit" target="_blank">Otworz dokument</a></td>
+        </tr>
+        <tr>
+          <td>Audyt portali ogloszeniowych</td>
+          <td><span class="tab-ref">Operacyjny</span> brief do Kamili i Diany</td>
+          <td><a href="https://docs.google.com/document/d/1MxOIYjIqjOX9PBl7oKog5t8SLzRHMJpkDjxUA-3zdjE/edit" target="_blank">Otworz dokument</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SECTION 3: API INTEGRATIONS -->
+  <div class="section-title admin">INTEGRACJE API — PODLACZONE</div>
+  <div class="info-section">
+    <table class="source-table">
+      <thead>
+        <tr>
+          <th>API</th>
+          <th>Co dostarcza</th>
+          <th>Klucz / token</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Google Sheets API v4</td>
+          <td>Dane finansowe, KZ, marketing report</td>
+          <td>dane/oauth_token_sheets.json</td>
+          <td><span class="source-badge badge-active">aktywne</span></td>
+        </tr>
+        <tr>
+          <td>Google Drive API v3</td>
+          <td>Upload/download plikow, konwersja formatow</td>
+          <td>dane/oauth_token_sheets.json (ten sam scope)</td>
+          <td><span class="source-badge badge-active">aktywne</span></td>
+        </tr>
+        <tr>
+          <td>Google Docs API v1</td>
+          <td>Edycja dokumentow (Plan 100M, briefy)</td>
+          <td>dane/oauth_token_sheets.json (drive scope)</td>
+          <td><span class="source-badge badge-active">aktywne</span></td>
+        </tr>
+        <tr>
+          <td>Google Calendar API v3</td>
+          <td>3 kalendarze (osobisty, Ideal Week, rozmowy)</td>
+          <td>dane/coo-asystent-...json (service account)</td>
+          <td><span class="source-badge badge-active">aktywne</span></td>
+        </tr>
+        <tr>
+          <td>Google Contacts API v1</td>
+          <td>2 734 kontaktow, read+write</td>
+          <td>dane/oauth_token.json</td>
+          <td><span class="source-badge badge-active">aktywne</span></td>
+        </tr>
+        <tr>
+          <td>YouTube Data API v3</td>
+          <td>Statystyki kanalu, 736 filmow, subskrybenci</td>
+          <td>dane/coo-asystent-...json (service account)</td>
+          <td><span class="source-badge badge-active">aktywne</span></td>
+        </tr>
+        <tr>
+          <td>YouTube Analytics API v2</td>
+          <td>Retention, traffic sources, demografia, watch time</td>
+          <td>dane/oauth_token_yt_analytics.json</td>
+          <td><span class="source-badge badge-active">aktywne</span></td>
+        </tr>
+        <tr>
+          <td>Livespace CRM API v1.13</td>
+          <td>417 deali, pipeline, win rate, zrodla leadow</td>
+          <td>dane/livespace_api.key.txt</td>
+          <td><span class="source-badge badge-active">aktywne</span></td>
+        </tr>
+        <tr>
+          <td>Happy Scribe API v1</td>
+          <td>293 transkrypcji spotkan i filmow</td>
+          <td>dane/happyscribe_api.key</td>
+          <td><span class="source-badge badge-active">aktywne</span></td>
+        </tr>
+        <tr>
+          <td>Gemini API (Imagen 4.0)</td>
+          <td>Generowanie grafik AI (Nano Banana)</td>
+          <td>dane/gemini_api.key</td>
+          <td><span class="source-badge badge-active">aktywne</span></td>
+        </tr>
+        <tr>
+          <td>GitHub Pages</td>
+          <td>Hosting tego dashboardu</td>
+          <td>MaciejGolebiewskiAI/dashboard-dn (repo)</td>
+          <td><span class="source-badge badge-active">aktywne</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SECTION 4: API PENDING -->
+  <div class="section-title admin">INTEGRACJE API — W KOLEJCE</div>
+  <div class="info-section">
+    <table class="source-table">
+      <thead>
+        <tr>
+          <th>API</th>
+          <th>Co dostarczy</th>
+          <th>Bloker</th>
+          <th>Kiedy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Publer API</td>
+          <td>Auto-publikacja LinkedIn + FB + IG ($10/msc)</td>
+          <td>Maciej musi zalozyc konto + podpiac kanaly</td>
+          <td><span class="source-badge badge-pending">marzec</span></td>
+        </tr>
+        <tr>
+          <td>MailerLite API v2</td>
+          <td>Baza newslettera, segmenty, automatyzacje</td>
+          <td>Kuba/WBiznes musi dac login (deadline 14.03)</td>
+          <td><span class="source-badge badge-pending">marzec</span></td>
+        </tr>
+        <tr>
+          <td>Odoo API (XML-RPC)</td>
+          <td>Statusy pokoi, wizyty, dostawy, sprzatanie</td>
+          <td>Oleg daje dane 10.03, CTO podpina 10-14.03</td>
+          <td><span class="source-badge badge-pending">marzec</span></td>
+        </tr>
+        <tr>
+          <td>Facebook Ads API</td>
+          <td>Dane kampanii Meta, automatyczny reporting</td>
+          <td>Wymaga Meta Business Suite + app review</td>
+          <td><span class="source-badge badge-planned">czerwiec</span></td>
+        </tr>
+        <tr>
+          <td>Google Ads API v17</td>
+          <td>Dane kampanii Google, automatyczny reporting</td>
+          <td>Wymaga Manager Account + OAuth</td>
+          <td><span class="source-badge badge-planned">czerwiec</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SECTION 5: LOCAL FILES -->
+  <div class="section-title admin">PLIKI LOKALNE — ZRODLA DANYCH</div>
+  <div class="info-section">
+    <table class="source-table">
+      <thead>
+        <tr>
+          <th>Plik</th>
+          <th>Uzywa zakladka</th>
+          <th>Aktualizacja</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>dane/decyzje.md</td>
+          <td><span class="tab-ref">Operacyjny</span><span class="tab-ref">Wins Log</span> decyzje biznesowe</td>
+          <td>Automatycznie — COO zapisuje po kazdej sesji</td>
+        </tr>
+        <tr>
+          <td>dane/plan.md</td>
+          <td><span class="tab-ref">Operacyjny</span><span class="tab-ref">Strategiczny</span> plan dzialan, zadania, cele</td>
+          <td>Automatycznie — COO aktualizuje</td>
+        </tr>
+        <tr>
+          <td>dane/linkedin_stats.md</td>
+          <td><span class="tab-ref">Marketing</span> views per post, followers, engagement</td>
+          <td>Recznie — screenshot co wtorek (LinkedIn blokuje API)</td>
+        </tr>
+        <tr>
+          <td>dane/youtube_report.md</td>
+          <td><span class="tab-ref">Marketing</span> subskrybenci, views, demografia, zrodla ruchu</td>
+          <td>Skrypt: python dane/youtube_stats.py</td>
+        </tr>
+        <tr>
+          <td>dane/facebook_stats.md</td>
+          <td><span class="tab-ref">Marketing</span> zasieg FB (marginalny)</td>
+          <td>Recznie — screenshot co wtorek</td>
+        </tr>
+        <tr>
+          <td>dane/instagram_stats.md</td>
+          <td><span class="tab-ref">Marketing</span> zasieg IG (marginalny)</td>
+          <td>Recznie — screenshot co wtorek</td>
+        </tr>
+        <tr>
+          <td>dane/api-inventory.md</td>
+          <td><span class="tab-ref">Admin</span><span class="tab-ref">AI Roadmap</span> inwentarz kluczy i integracji</td>
+          <td>Automatycznie — CTO aktualizuje po podpieciu</td>
+        </tr>
+        <tr>
+          <td>dane/projekty-status.md</td>
+          <td><span class="tab-ref">Strategiczny</span> status 10 projektow</td>
+          <td>Automatycznie — COO aktualizuje</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SECTION 6: GOOGLE CLOUD -->
+  <div class="section-title admin">GOOGLE CLOUD — KONFIGURACJA</div>
+  <div class="info-section">
+    <div class="info-bullet"><b>Project:</b> coo-asystent (ID: 130658183080)</div>
+    <div class="info-bullet"><b>Console:</b> <a href="https://console.cloud.google.com/apis/dashboard?project=coo-asystent" target="_blank" style="color:#FFCC33">console.cloud.google.com</a></div>
+    <div class="info-bullet"><b>Service Account:</b> coo-reader@coo-asystent.iam.gserviceaccount.com</div>
+    <div class="info-bullet"><b>OAuth:</b> tryb Production (od 06.03 — tokeny nie wygasaja)</div>
+    <div class="info-bullet"><b>Wlaczone API:</b> Sheets, Calendar, Tasks, People, YouTube Data, YouTube Analytics, Docs, Drive</div>
+    <div class="info-bullet"><b>Quota YT:</b> 10 000 units/dzien (darmowe)</div>
+    <div class="info-note">Pelny inwentarz kluczy i tokenow: dane/api-inventory.md (lokalny plik, nie udostepniaj!)</div>
+  </div>
+
+  <div class="legend">
+    <div class="leg-item"><div class="leg-dot" style="background:#03B54D"></div> Aktywne — dane plyna</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#FFCC33"></div> Do podpiecia — arkusz dostepny, dane nie uzytkowane</div>
+    <div class="leg-item"><div class="leg-dot" style="background:rgba(255,248,225,0.2)"></div> Planowane — wymaga setup</div>
+  </div>
+
+</div>
+
 <script>
 function showView(id, el, activeClass) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(t => {
-    t.classList.remove('active', 'active-green', 'active-purple', 'active-yellow', 'active-pink', 'active-teal');
+    t.classList.remove('active', 'active-green', 'active-purple', 'active-yellow', 'active-pink', 'active-teal', 'active-admin');
   });
   document.getElementById(id).classList.add('active');
   el.classList.add(activeClass || 'active');
