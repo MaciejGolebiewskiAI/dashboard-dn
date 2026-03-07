@@ -165,12 +165,12 @@
     <div class="nav-tab" onclick="showView('strategic', this, 'active-yellow')">Strategiczny</div>
     <div class="nav-tab" onclick="showView('wins', this, 'active-green')">Wins Log</div>
   </div>
-  <div class="nav-date">Auto-aktualizacja: 07.03.2026 10:55</div>
+  <div class="nav-date">Auto-aktualizacja: 07.03.2026 11:25</div>
 </div>
 
 <div id="ops" class="view active">
   <div class="kpi-bar">
-    <div class="kpi-card"><div class="kpi-val orange">80</div><div class="kpi-label">Decyzji aktywnych</div></div>
+    <div class="kpi-card"><div class="kpi-val orange">81</div><div class="kpi-label">Decyzji aktywnych</div></div>
     <div class="kpi-card"><div class="kpi-val yellow">20</div><div class="kpi-label">Deadline’ów</div></div>
     <div class="kpi-card"><div class="kpi-val green">81.5%</div><div class="kpi-label">Obłożenie</div></div>
     <div class="kpi-card"><div class="kpi-val orange">230</div><div class="kpi-label">Wolnych pokoi</div></div>
@@ -228,6 +228,10 @@
     </div>
   </div>
   <div class="section-title">AKTYWNE DECYZJE</div>
+  <div class="task" style="margin-bottom: 8px;">
+    <div class="task-dot dot-doing"></div>
+    <span><b>07.03.2026 | MARKETING</b> — Slajdy YT — polski język, zero angielskich buzzwordów <span class="owner">aktywna — obowiązuje od teraz na stałe</span></span>
+  </div>
   <div class="task" style="margin-bottom: 8px;">
     <div class="task-dot dot-doing"></div>
     <span><b>07.03.2026 | SPRZEDAŻ</b> — Dokumenty do Kamili — analiza zdalny vs terenowy + profil huntera <span class="owner">aktywna — czekamy na Kamilę</span></span>
@@ -303,10 +307,6 @@
   <div class="task" style="margin-bottom: 8px;">
     <div class="task-dot dot-doing"></div>
     <span><b>06.03.2026 | OPERACJE</b> — ANKIETY DYREKTORÓW — FOLLOW-UP WYSŁANY, deadline 10.03 <span class="owner">aktywna</span></span>
-  </div>
-  <div class="task" style="margin-bottom: 8px;">
-    <div class="task-dot dot-doing"></div>
-    <span><b>06.03.2026 | OPERACJE</b> — PUBLER — NARZĘDZIE DO PLANOWANIA I PUBLIKACJI SOCIAL MEDIA <span class="owner">aktywna</span></span>
   </div>
 
   <div class="legend">
@@ -835,11 +835,20 @@
 
 <div id="wins" class="view">
   <div class="kpi-bar">
-    <div class="kpi-card"><div class="kpi-val green">80</div><div class="kpi-label">Decyzji / akcji w 2026</div></div>
+    <div class="kpi-card"><div class="kpi-val green">81</div><div class="kpi-label">Decyzji / akcji w 2026</div></div>
     <div class="kpi-card"><div class="kpi-val orange">6</div><div class="kpi-label">W realizacji / wysłane</div></div>
   </div>
   <div class="section-title green">LOG OŚCIĄGNIĘĆ</div>
   <div class="wins-list">
+    <div class="win">
+      <div class="win-date">07.03</div>
+      <div class="win-icon">&#128200;</div>
+      <div class="win-content">
+        <div class="win-title">Slajdy YT — polski język, zero angielskich buzzwordów</div>
+        <div class="win-desc">Na slajdach do filmów YouTube używamy WYŁĄCZNIE polskich określeń. Żadnych angielskich buzzwordów (np. &quot;due diligence&quot;, &quot;benchmark&quot;, &quot;drawdown&quot;, &quot;first-mover advantage&quot;). Jeśli nie ma dobrego polskiego odpowiednika — opisz po polsku co to znaczy.</div>
+        <span class="win-tag tag-analiza">MARKETING</span>
+      </div>
+    </div>
     <div class="win">
       <div class="win-date">07.03</div>
       <div class="win-icon">&#128176;</div>
@@ -1774,7 +1783,7 @@ Przygotować ankietę anonimową. Przeprowadzić w marcu.
   </div>
 </div>
 
-<div class="auto-note">Auto-generowane z plan.md + decyzje.md + Google Sheets | 07.03.2026 10:55 | gen_dashboard.py</div>
+<div class="auto-note">Auto-generowane z plan.md + decyzje.md + Google Sheets | 07.03.2026 11:25 | gen_dashboard.py</div>
 
 <script>
 function showView(id, el, activeClass) {
