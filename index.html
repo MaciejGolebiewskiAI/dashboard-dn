@@ -332,6 +332,228 @@
   }
   .leg-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: rgba(255,248,225,0.4); }
   .leg-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  /* MARKETING TAB */
+  .nav-tab.active-pink { background: #E040FB; color: #1A163C; border-color: #E040FB; }
+  .section-title.pink { border-left-color: #E040FB; }
+  .kpi-val.pink { color: #E040FB; }
+
+  /* PHASE TIMELINE */
+  .phase-bar {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 20px;
+  }
+  .phase-item {
+    flex: 1;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: rgba(255,248,225,0.04);
+    border: 1px solid rgba(255,248,225,0.08);
+    text-align: center;
+    position: relative;
+  }
+  .phase-item.phase-current {
+    border-color: #E040FB;
+    background: rgba(224,64,251,0.1);
+  }
+  .phase-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: #FFF8E1;
+    margin-bottom: 2px;
+  }
+  .phase-current .phase-name { color: #E040FB; }
+  .phase-dates {
+    font-size: 10px;
+    color: rgba(255,248,225,0.35);
+    font-weight: 600;
+  }
+  .phase-badge {
+    display: inline-block;
+    font-size: 9px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: rgba(224,64,251,0.2);
+    color: #E040FB;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+  }
+
+  /* MARKETING CHECKLIST */
+  .mkt-checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+  .mkt-check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13px;
+    color: rgba(255,248,225,0.78);
+    line-height: 1.5;
+    padding: 6px 10px;
+    background: rgba(255,248,225,0.03);
+    border-radius: 6px;
+  }
+  .mkt-check-item.done { opacity: 0.65; }
+  .mkt-check-icon {
+    flex-shrink: 0;
+    font-size: 14px;
+    margin-top: 1px;
+  }
+  .mkt-check-text b { color: #FFF8E1; }
+  .mkt-check-dl {
+    font-size: 10px;
+    color: #E040FB;
+    font-weight: 700;
+    margin-left: 6px;
+  }
+
+  /* CHANNEL CARDS */
+  .channel-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 1100px) { .channel-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 700px) { .channel-grid { grid-template-columns: 1fr; } }
+  .channel-card {
+    background: rgba(255,248,225,0.04);
+    border: 1px solid rgba(255,248,225,0.08);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  .channel-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #E040FB;
+    margin-bottom: 10px;
+  }
+  .channel-stat {
+    font-size: 12px;
+    color: rgba(255,248,225,0.6);
+    line-height: 1.6;
+    padding-left: 12px;
+    position: relative;
+    margin-bottom: 3px;
+  }
+  .channel-stat::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #E040FB;
+  }
+  .channel-stat b { color: #FFF8E1; font-weight: 700; }
+  .channel-highlight {
+    font-size: 11px;
+    color: rgba(224,64,251,0.7);
+    font-style: italic;
+    margin-top: 8px;
+    padding-top: 6px;
+    border-top: 1px solid rgba(255,248,225,0.06);
+  }
+
+  /* BUDGET TABLE */
+  .budget-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+  }
+  .budget-table th, .budget-table td {
+    text-align: left;
+    padding: 8px 14px;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(255,248,225,0.06);
+  }
+  .budget-table th {
+    font-size: 11px;
+    color: rgba(255,248,225,0.35);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+  .budget-table td { color: rgba(255,248,225,0.7); }
+  .budget-table tr.total td {
+    font-weight: 700;
+    color: #E040FB;
+    border-top: 2px solid rgba(224,64,251,0.3);
+    border-bottom: none;
+  }
+
+  /* SAVINGS */
+  .savings-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 24px;
+  }
+  .savings-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: rgba(255,248,225,0.55);
+    padding: 4px 0;
+  }
+  .savings-item b { color: #03B54D; font-weight: 700; }
+  .savings-total {
+    font-size: 13px;
+    font-weight: 700;
+    color: #03B54D;
+    padding-top: 6px;
+    border-top: 1px solid rgba(3,181,77,0.2);
+    margin-top: 4px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* DOC CARDS */
+  .doc-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .doc-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255,248,225,0.04);
+    border: 1px solid rgba(255,248,225,0.08);
+    border-radius: 8px;
+    padding: 10px 14px;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .doc-card:hover {
+    background: rgba(224,64,251,0.08);
+    border-color: rgba(224,64,251,0.25);
+  }
+  .doc-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .doc-info { flex: 1; }
+  .doc-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #FFF8E1;
+  }
+  .doc-path {
+    font-size: 10px;
+    color: rgba(255,248,225,0.3);
+    margin-top: 2px;
+    word-break: break-all;
+  }
 </style>
 </head>
 <body>
@@ -344,6 +566,7 @@
     <div class="nav-tab" onclick="showView('strategic', this, 'active-purple')">Strategiczny</div>
     <div class="nav-tab" onclick="showView('finance', this, 'active-yellow')">Finanse</div>
     <div class="nav-tab" onclick="showView('gotowce', this)">Gotowce</div>
+    <div class="nav-tab" onclick="showView('marketing', this, 'active-pink')">Marketing</div>
     <div class="nav-tab" onclick="showView('wins', this, 'active-green')">Wins Log</div>
   </div>
   <div class="nav-date">Ostatnia aktualizacja: 07.03.2026</div>
@@ -895,7 +1118,208 @@
 
 </div>
 
-<!-- ====== VIEW 5: WINS LOG ====== -->
+<!-- ====== VIEW 5: MARKETING ====== -->
+<div id="marketing" class="view">
+
+  <!-- KPI -->
+  <div class="kpi-bar">
+    <div class="kpi-card"><div class="kpi-val pink">3 051</div><div class="kpi-label">LinkedIn followers (cel: 4 000+)</div></div>
+    <div class="kpi-card"><div class="kpi-val pink">372</div><div class="kpi-label">LinkedIn avg views/post (cel: 1 000+)</div></div>
+    <div class="kpi-card"><div class="kpi-val pink">13 100</div><div class="kpi-label">YouTube subscribers (cel: 14 500+)</div></div>
+    <div class="kpi-card"><div class="kpi-val pink">1 634</div><div class="kpi-label">YouTube avg views/film (cel: 2 500+)</div></div>
+    <div class="kpi-card"><div class="kpi-val pink">~17 000</div><div class="kpi-label">Newsletter baza (cel: 18 500+)</div></div>
+    <div class="kpi-card"><div class="kpi-val pink">1 531</div><div class="kpi-label">CPL kwalifikowany PLN (cel: &lt;1 200)</div></div>
+  </div>
+
+  <!-- SECTION 1: OFENSYWA 100M -->
+  <div class="section-title pink">OFENSYWA 100M — STATUS</div>
+
+  <div class="phase-bar">
+    <div class="phase-item phase-current">
+      <div class="phase-name">PREP WEEK</div>
+      <div class="phase-dates">10-14.03</div>
+      <div class="phase-badge">TERAZ</div>
+    </div>
+    <div class="phase-item">
+      <div class="phase-name">FAZA 1: LAUNCH</div>
+      <div class="phase-dates">16.03 — kwiecien</div>
+    </div>
+    <div class="phase-item">
+      <div class="phase-name">FAZA 2: MOMENTUM</div>
+      <div class="phase-dates">maj — czerwiec</div>
+    </div>
+    <div class="phase-item">
+      <div class="phase-name">FAZA 3: LATO</div>
+      <div class="phase-dates">lipiec — sierpien</div>
+    </div>
+    <div class="phase-item">
+      <div class="phase-name">FAZA 4: 10-LECIE</div>
+      <div class="phase-dates">wrzesien — pazdziernik</div>
+    </div>
+  </div>
+
+  <div class="mkt-checklist">
+    <div class="mkt-check-item done">
+      <span class="mkt-check-icon">&#9989;</span>
+      <span class="mkt-check-text"><b>Plan Ofensywy 100M v3 zatwierdzony</b> — pelny plan 7 miesiecy, Google Docs. Maciej zatwierdzil 05.03.</span>
+    </div>
+    <div class="mkt-check-item done">
+      <span class="mkt-check-icon">&#9989;</span>
+      <span class="mkt-check-text"><b>Brief do Kuby wyslany</b> — 6 pytan + Prep Week zadania. Mail wychodzi w poniedzialek 10.03.</span>
+    </div>
+    <div class="mkt-check-item done">
+      <span class="mkt-check-icon">&#9989;</span>
+      <span class="mkt-check-text"><b>LinkedIn przejety od WBiznes</b> — Maciej postuje sam z AI od 12.03.</span>
+    </div>
+    <div class="mkt-check-item done">
+      <span class="mkt-check-icon">&#9989;</span>
+      <span class="mkt-check-text"><b>Plan postow LinkedIn</b> — 4 posty gotowe (seria "Twarde dane", opinia + dane).</span>
+    </div>
+    <div class="mkt-check-item">
+      <span class="mkt-check-icon">&#11036;</span>
+      <span class="mkt-check-text"><b>Landing page 100M</b> — AI buduje (HTML/CSS), URL: dobregonajmu.pl/100-milionow.<span class="mkt-check-dl">DL: 21.03</span></span>
+    </div>
+    <div class="mkt-check-item">
+      <span class="mkt-check-icon">&#11036;</span>
+      <span class="mkt-check-text"><b>Ebook "10 lekcji ze 100M"</b> — AI pisze, Maciej review. Lead magnet.<span class="mkt-check-dl">DL: 28.03</span></span>
+    </div>
+    <div class="mkt-check-item">
+      <span class="mkt-check-icon">&#11036;</span>
+      <span class="mkt-check-text"><b>Auto-wywiad z Maciejem</b> — 12 pytan, nagranie + clipy.<span class="mkt-check-dl">DL: 17-21.03 nagranie, 30.03 premiera</span></span>
+    </div>
+    <div class="mkt-check-item">
+      <span class="mkt-check-icon">&#11036;</span>
+      <span class="mkt-check-text"><b>SEO artykul "100M z najmu"</b> — WBiznes upload + technikalia.<span class="mkt-check-dl">DL: 21.03</span></span>
+    </div>
+    <div class="mkt-check-item">
+      <span class="mkt-check-icon">&#11036;</span>
+      <span class="mkt-check-text"><b>FlatLetter specjalny 100M</b> — wydanie do kwalifikowanych leadow.<span class="mkt-check-dl">DL: 23.03</span></span>
+    </div>
+    <div class="mkt-check-item">
+      <span class="mkt-check-icon">&#11036;</span>
+      <span class="mkt-check-text"><b>Newsletter 100M</b> — do pelnej bazy 18k.<span class="mkt-check-dl">DL: 23.03</span></span>
+    </div>
+    <div class="mkt-check-item">
+      <span class="mkt-check-icon">&#11036;</span>
+      <span class="mkt-check-text"><b>Komunikat prasowy PAP</b> — dystrybucja do ~2 500 redakcji.<span class="mkt-check-dl">DL: 24.03</span></span>
+    </div>
+    <div class="mkt-check-item">
+      <span class="mkt-check-icon">&#11036;</span>
+      <span class="mkt-check-text"><b>LinkedIn TLA</b> — baseline 2 tyg., potem pilotaz 500-800 PLN.<span class="mkt-check-dl">Start: 16.03</span></span>
+    </div>
+    <div class="mkt-check-item">
+      <span class="mkt-check-icon">&#11036;</span>
+      <span class="mkt-check-text"><b>FB/IG przejecie od WBiznes</b> — od kwietnia Maciej+AI. Oszczednosc ~22k/rok.<span class="mkt-check-dl">Kwiecien</span></span>
+    </div>
+  </div>
+
+  <!-- SECTION 2: KANALY -->
+  <div class="section-title pink">KANALY — STATYSTYKI</div>
+
+  <div class="channel-grid">
+    <div class="channel-card">
+      <div class="channel-name">LinkedIn</div>
+      <div class="channel-stat"><b>20 postow</b> (ostatnie 30 dni)</div>
+      <div class="channel-stat">Srednia views: <b>372</b> (mediana: 204)</div>
+      <div class="channel-stat">Najlepszy post: <b>"Dzwignia finansowa"</b> — 1 684 views</div>
+      <div class="channel-stat">Followers: <b>3 051</b> (+0,2%)</div>
+      <div class="channel-highlight">Format: opinia + dane = 4x wiecej views niz posty z linkiem</div>
+    </div>
+    <div class="channel-card">
+      <div class="channel-name">YouTube</div>
+      <div class="channel-stat"><b>13 100</b> subskrybentow</div>
+      <div class="channel-stat">Avg views ostatnich 15 filmow: <b>1 634</b></div>
+      <div class="channel-stat">Najlepszy: <b>"Ceny, Mieszkania i Deweloperzy w 2026"</b> — 4 413 views</div>
+      <div class="channel-stat"><b>43%</b> leadow gotowcowych = z YouTube</div>
+      <div class="channel-highlight">100% kwalifikacji leadow z YT w styczniu</div>
+    </div>
+    <div class="channel-card">
+      <div class="channel-name">Facebook / Instagram</div>
+      <div class="channel-stat">FB: <b>50-310</b> views organicznie (marginalne)</div>
+      <div class="channel-stat">IG: <b>44-154</b> zasieg (marginalne)</div>
+      <div class="channel-stat">Caly ruch = <b>paid</b> (organic nieistotny)</div>
+      <div class="channel-stat">Przejecie od WBiznes w <b>kwietniu</b></div>
+      <div class="channel-highlight">Oszczednosc: 1 870 PLN netto/msc</div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: BUDZET -->
+  <div class="section-title pink">BUDZET MARKETINGOWY</div>
+
+  <div class="info-section">
+    <table class="budget-table">
+      <thead>
+        <tr>
+          <th>Pozycja</th>
+          <th>Koszt / msc</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>WBiznes fee</td><td>15 900 PLN</td></tr>
+        <tr><td>WBiznes media (Google+Meta)</td><td>~13 000 PLN</td></tr>
+        <tr><td>Fron Energy (cold calling)</td><td>~16 600 PLN</td></tr>
+        <tr><td>Agencja PR (Face IT)</td><td>10 000 PLN</td></tr>
+        <tr class="total"><td>RAZEM BASELINE</td><td>~55 500 PLN/msc</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-title green" style="font-size: 13px;">OSZCZEDNOSCI Z AI</div>
+
+  <div class="info-section">
+    <div class="savings-grid">
+      <div class="savings-item"><span>Landing 100M (AI zamiast WBiznes)</span><b>3-5k PLN</b></div>
+      <div class="savings-item"><span>FB/IG przejecie (1 870 PLN/msc)</span><b>~22k PLN/rok</b></div>
+      <div class="savings-item"><span>LinkedIn TLA — fee WBiznes (AI prowadzi)</span><b>oszczednosc fee</b></div>
+      <div class="savings-item"><span>Kalkulator ROI</span><b>3-5k PLN</b></div>
+      <div class="savings-total"><span>LACZNIE</span><b>~36-45k PLN/rok</b></div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: KLUCZOWE DOKUMENTY -->
+  <div class="section-title pink">KLUCZOWE DOKUMENTY</div>
+
+  <div class="doc-grid">
+    <a class="doc-card" href="https://docs.google.com/document/d/1zBO0MvpGaUkYycWUdFy6OGJV1rcefwWk4liSGvh4PQk/edit" target="_blank">
+      <span class="doc-icon">&#128196;</span>
+      <div class="doc-info">
+        <div class="doc-name">Plan Ofensywy 100M v3</div>
+        <div class="doc-path">Google Docs</div>
+      </div>
+    </a>
+    <div class="doc-card">
+      <span class="doc-icon">&#128203;</span>
+      <div class="doc-info">
+        <div class="doc-name">Brief do Kuby — strategia marketingowa</div>
+        <div class="doc-path">materialy/koncepcje-strategiczne/20260307_brief-kuba-strategia-marketingowa.md</div>
+      </div>
+    </div>
+    <div class="doc-card">
+      <span class="doc-icon">&#128200;</span>
+      <div class="doc-info">
+        <div class="doc-name">Analiza CPL styczen</div>
+        <div class="doc-path">materialy/analiza-cpl-styczen-2026.md</div>
+      </div>
+    </div>
+    <a class="doc-card" href="https://docs.google.com/document/d/1SW84h6OGqmyk7srZnCgbLpGFzVTDU2SmrR6FZI8g7zA/edit" target="_blank">
+      <span class="doc-icon">&#127909;</span>
+      <div class="doc-info">
+        <div class="doc-name">Webinar Brunson — skrypt</div>
+        <div class="doc-path">Google Docs</div>
+      </div>
+    </a>
+    <a class="doc-card" href="https://docs.google.com/spreadsheets/d/1dxPRrb8AhUkQdNdkWktyCQPWYctn8V91eUSU-xb7g5M/edit" target="_blank">
+      <span class="doc-icon">&#128202;</span>
+      <div class="doc-info">
+        <div class="doc-name">Raport WBiznes DN</div>
+        <div class="doc-path">Google Sheets</div>
+      </div>
+    </a>
+  </div>
+
+</div>
+
+<!-- ====== VIEW 6: WINS LOG ====== -->
 <div id="wins" class="view">
 
   <div class="kpi-bar">
@@ -1146,7 +1570,7 @@
 function showView(id, el, activeClass) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(t => {
-    t.classList.remove('active', 'active-green', 'active-purple', 'active-yellow');
+    t.classList.remove('active', 'active-green', 'active-purple', 'active-yellow', 'active-pink');
   });
   document.getElementById(id).classList.add('active');
   el.classList.add(activeClass || 'active');
