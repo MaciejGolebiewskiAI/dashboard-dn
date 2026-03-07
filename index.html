@@ -47,6 +47,7 @@
   .nav-tab.active-green { background: #03B54D; color: #1A163C; border-color: #03B54D; }
   .nav-tab.active-purple { background: #665BC2; color: #FFF8E1; border-color: #665BC2; }
   .nav-tab.active-yellow { background: #FFCC33; color: #1A163C; border-color: #FFCC33; }
+  .nav-tab.active-teal { background: #26C6DA; color: #1A163C; border-color: #26C6DA; }
   .nav-date { margin-left: auto; font-size: 13px; color: rgba(255,248,225,0.35); font-weight: 600; }
 
   .view { display: none; padding: 24px 32px; }
@@ -89,6 +90,7 @@
   .section-title.purple { border-left-color: #665BC2; }
   .section-title.yellow { border-left-color: #FFCC33; }
   .section-title.red { border-left-color: #FF4444; }
+  .section-title.teal { border-left-color: #26C6DA; }
 
   /* TASK GRID */
   .task-grid {
@@ -107,6 +109,7 @@
     padding: 10px 12px;
   }
   .task-item.done { opacity: 0.7; }
+  .task-item.overdue { border-left: 3px solid #FF4444; }
   .task-item-header {
     display: flex;
     align-items: flex-start;
@@ -156,6 +159,7 @@
     font-weight: 700;
     white-space: nowrap;
   }
+  .deadline-badge.overdue { background: rgba(255,68,68,0.3); }
 
   /* LEGACY TASK (strategic view) */
   .task {
@@ -262,13 +266,20 @@
     border-radius: 12px;
     padding: 16px;
   }
+  .chart-card-wide {
+    background: rgba(255,248,225,0.04);
+    border: 1px solid rgba(255,248,225,0.08);
+    border-radius: 12px;
+    padding: 16px;
+    grid-column: 1 / -1;
+  }
   .chart-card-title {
     font-size: 16px;
     font-weight: 700;
     margin-bottom: 10px;
     color: #FFF8E1;
   }
-  .chart-card canvas {
+  .chart-card canvas, .chart-card-wide canvas {
     width: 100% !important;
     height: 200px !important;
   }
@@ -314,12 +325,6 @@
     margin-top: 12px;
     padding-top: 8px;
     border-top: 1px solid rgba(255,248,225,0.06);
-  }
-  .sample-note {
-    font-size: 11px;
-    color: rgba(255,204,51,0.6);
-    font-style: italic;
-    margin-bottom: 16px;
   }
 
   /* LEGEND */
@@ -567,6 +572,7 @@
     <div class="nav-tab" onclick="showView('finance', this, 'active-yellow')">Finanse</div>
     <div class="nav-tab" onclick="showView('gotowce', this)">Gotowce</div>
     <div class="nav-tab" onclick="showView('marketing', this, 'active-pink')">Marketing</div>
+    <div class="nav-tab" onclick="showView('ai', this, 'active-teal')">AI Roadmap</div>
     <div class="nav-tab" onclick="showView('wins', this, 'active-green')">Wins Log</div>
   </div>
   <div class="nav-date">Ostatnia aktualizacja: 07.03.2026</div>
@@ -618,6 +624,68 @@
       <div class="task-desc">Mail z aktualizacja wymagan na nowe biuro wyslany do Karoliny. Open space razem = warunek konieczny, okienka obslugi codziennie.</div>
       <div class="task-meta">
         <span class="owner">Karolina</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TEN TYDZIEN — W TOKU / DO ZROBIENIA -->
+  <div class="section-title">TEN TYDZIEN — W TOKU / DO ZROBIENIA</div>
+  <div class="task-grid">
+
+    <div class="task-item">
+      <div class="task-item-header">
+        <div class="task-dot dot-doing"></div>
+        <div class="task-name">Sprzedawcy terenowi — audyt</div>
+      </div>
+      <div class="task-desc">Weryfikacja co robia 7-10, wieczory, weekendy. "Albo podejscie, albo ludzi." Deadline: 2 miesiace.</div>
+      <div class="task-meta">
+        <span class="owner">Karolina/Diana</span>
+      </div>
+    </div>
+
+    <div class="task-item">
+      <div class="task-item-header">
+        <div class="task-dot dot-doing"></div>
+        <div class="task-name">Dokumenty do Kamili</div>
+      </div>
+      <div class="task-desc">Analiza sprzedaz zdalna vs terenowa + profil huntera. Wyslane 07.03. Czekamy na odpowiedz.</div>
+      <div class="task-meta">
+        <span class="owner">Kamila</span>
+      </div>
+    </div>
+
+    <div class="task-item">
+      <div class="task-item-header">
+        <div class="task-dot dot-todo"></div>
+        <div class="task-name">Claude for Teams</div>
+      </div>
+      <div class="task-desc">Kupic 5 seats Standard ($25/os). Zaprosic: Marek, Oleg, Pawel, Kamila/Diana, Karolina.</div>
+      <div class="task-meta">
+        <span class="owner">Maciej</span>
+      </div>
+    </div>
+
+    <div class="task-item">
+      <div class="task-item-header">
+        <div class="task-dot dot-todo"></div>
+        <div class="task-name">AIBL 10 lekcji</div>
+      </div>
+      <div class="task-desc">Wszyscy dyrektorzy musza przejsc 10 lekcji szkolenia AI Biznes Lab.</div>
+      <div class="task-meta">
+        <span class="owner">Wszyscy D6</span>
+        <span class="deadline-badge">DL 15.03</span>
+      </div>
+    </div>
+
+    <div class="task-item">
+      <div class="task-item-header">
+        <div class="task-dot dot-todo"></div>
+        <div class="task-name">Maciej: modul Canva+AI</div>
+      </div>
+      <div class="task-desc">Przejsc szkolenie Burnejko, sekcja o grafikach AI. Pipeline: AI -> Canva -> LinkedIn.</div>
+      <div class="task-meta">
+        <span class="owner">Maciej</span>
       </div>
     </div>
 
@@ -712,68 +780,6 @@
       <div class="task-desc">6-stronowy PDF, 3 sciezki: zamiana w BTD, nowe biuro, wczesniejsze wyjscie. Oszczednosc 100-175k/rok.</div>
       <div class="task-meta">
         <span class="owner">Karolina</span>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- TEN TYDZIEN — W TOKU / DO ZROBIENIA -->
-  <div class="section-title">TEN TYDZIEN — W TOKU / DO ZROBIENIA</div>
-  <div class="task-grid">
-
-    <div class="task-item">
-      <div class="task-item-header">
-        <div class="task-dot dot-doing"></div>
-        <div class="task-name">Sprzedawcy terenowi — audyt</div>
-      </div>
-      <div class="task-desc">Weryfikacja co robia 7-10, wieczory, weekendy. "Albo podejscie, albo ludzi." Deadline: 2 miesiace.</div>
-      <div class="task-meta">
-        <span class="owner">Karolina/Diana</span>
-      </div>
-    </div>
-
-    <div class="task-item">
-      <div class="task-item-header">
-        <div class="task-dot dot-doing"></div>
-        <div class="task-name">Dokumenty do Kamili</div>
-      </div>
-      <div class="task-desc">Analiza sprzedaz zdalna vs terenowa + profil huntera. Wyslane 07.03. Czekamy na odpowiedz.</div>
-      <div class="task-meta">
-        <span class="owner">Kamila</span>
-      </div>
-    </div>
-
-    <div class="task-item">
-      <div class="task-item-header">
-        <div class="task-dot dot-todo"></div>
-        <div class="task-name">Claude for Teams</div>
-      </div>
-      <div class="task-desc">Kupic 5 seats Standard ($25/os). Zaprosic: Marek, Oleg, Pawel, Kamila/Diana, Karolina.</div>
-      <div class="task-meta">
-        <span class="owner">Maciej</span>
-      </div>
-    </div>
-
-    <div class="task-item">
-      <div class="task-item-header">
-        <div class="task-dot dot-todo"></div>
-        <div class="task-name">AIBL 10 lekcji</div>
-      </div>
-      <div class="task-desc">Wszyscy dyrektorzy musza przejsc 10 lekcji szkolenia AI Biznes Lab.</div>
-      <div class="task-meta">
-        <span class="owner">Wszyscy D6</span>
-        <span class="deadline-badge">DL 15.03</span>
-      </div>
-    </div>
-
-    <div class="task-item">
-      <div class="task-item-header">
-        <div class="task-dot dot-todo"></div>
-        <div class="task-name">Maciej: modul Canva+AI</div>
-      </div>
-      <div class="task-desc">Przejsc szkolenie Burnejko, sekcja o grafikach AI. Pipeline: AI -> Canva -> LinkedIn.</div>
-      <div class="task-meta">
-        <span class="owner">Maciej</span>
       </div>
     </div>
 
@@ -1046,14 +1052,13 @@
 <div id="finance" class="view">
 
   <div class="kpi-bar">
-    <div class="kpi-card"><div class="kpi-val green">2,39M</div><div class="kpi-label">Przychod luty 2026 (PLN)</div></div>
-    <div class="kpi-card"><div class="kpi-val white">2,28M</div><div class="kpi-label">Przychod styczen 2026</div></div>
-    <div class="kpi-card"><div class="kpi-val orange">+5%</div><div class="kpi-label">Zmiana MoM</div></div>
-    <div class="kpi-card"><div class="kpi-val yellow">+12%</div><div class="kpi-label">Szacunek YoY</div></div>
+    <div class="kpi-card"><div class="kpi-val green">2,39M</div><div class="kpi-label">Przychod lut 2026 (PLN)</div></div>
+    <div class="kpi-card"><div class="kpi-val white">2,28M</div><div class="kpi-label">Przychod sty 2026</div></div>
+    <div class="kpi-card"><div class="kpi-val orange">+5,0%</div><div class="kpi-label">MoM</div></div>
+    <div class="kpi-card"><div class="kpi-val yellow">-0,3%</div><div class="kpi-label">YoY lut vs lut</div></div>
   </div>
 
-  <div class="section-title yellow">PRZYCHODY PER SPOLKA — OSTATNIE 12 MIESIECY</div>
-  <div class="sample-note">Dane przykladowe — do uzupelnienia z arkusza Pawla</div>
+  <div class="section-title yellow">PRZYCHODY PER SPOLKA — 2025 vs 2024 (tys. PLN)</div>
 
   <div class="charts-grid">
     <div class="chart-card">
@@ -1073,13 +1078,59 @@
       <canvas id="chartALZ"></canvas>
     </div>
     <div class="chart-card">
-      <div class="chart-card-title">PAK</div>
-      <canvas id="chartPAK"></canvas>
+      <div class="chart-card-title">LH (podnajem+zarzadzanie)</div>
+      <canvas id="chartLH"></canvas>
     </div>
     <div class="chart-card">
       <div class="chart-card-title">RED</div>
       <canvas id="chartRED"></canvas>
     </div>
+    <div class="chart-card-wide">
+      <div class="chart-card-title">SUMA (wszystkie spolki)</div>
+      <canvas id="chartSUMA"></canvas>
+    </div>
+  </div>
+
+  <!-- KZ SECTION -->
+  <div class="section-title yellow">KOSZT ZARZADZANIA (KZ) — DANE RZECZYWISTE</div>
+
+  <div class="kpi-bar" style="margin-bottom:16px">
+    <div class="kpi-card"><div class="kpi-val yellow">316k</div><div class="kpi-label">KZ gru 2025</div></div>
+    <div class="kpi-card"><div class="kpi-val yellow">14,2%</div><div class="kpi-label">KZ/przychod gru</div></div>
+    <div class="kpi-card"><div class="kpi-val yellow">220 PLN</div><div class="kpi-label">KZ per najemca gru</div></div>
+    <div class="kpi-card"><div class="kpi-val orange">3,87M</div><div class="kpi-label">KZ rocznie 2025</div></div>
+    <div class="kpi-card"><div class="kpi-val white">2,97M</div><div class="kpi-label">KZ rocznie 2024</div></div>
+    <div class="kpi-card"><div class="kpi-val" style="color:#FF4444">+30%</div><div class="kpi-label">KZ YoY wzrost</div></div>
+  </div>
+
+  <div class="chart-card-wide" style="margin-bottom:16px">
+    <div class="chart-card-title">KZ Suma calkowita (tys. PLN)</div>
+    <canvas id="chartKZTotal"></canvas>
+  </div>
+
+  <div class="charts-grid">
+    <div class="chart-card">
+      <div class="chart-card-title">KZ jako % przychodu</div>
+      <canvas id="chartKZpct"></canvas>
+    </div>
+    <div class="chart-card">
+      <div class="chart-card-title">KZ per najemca (PLN/os/msc)</div>
+      <canvas id="chartKZperN"></canvas>
+    </div>
+    <div class="chart-card">
+      <div class="chart-card-title">Struktura KZ — roczna (tys. PLN)</div>
+      <canvas id="chartKZstructure"></canvas>
+    </div>
+  </div>
+
+  <div class="info-section" style="margin-top:16px">
+    <div class="info-section-title">DOSTEPNE ZRODLA DANYCH FINANSOWYCH</div>
+    <div class="info-bullet"><b>Pracownicy, pensje, premie</b> — indywidualne wynagrodzenia, stawki, systemy premiowe</div>
+    <div class="info-bullet"><b>AL Holding raport finansowy</b> — RZiS per spolka (AL0, AL1, AXL, LHR, ALR), plan kont</div>
+    <div class="info-bullet"><b>Koszty na najemce KZ/1N</b> — szczegolowa baza kosztow, koszty pracy</div>
+    <div class="info-bullet"><b>Prognoza czynszow 2025/2026</b> — prognozowane przychody per spolka</div>
+    <div class="info-bullet"><b>Rozliczenia remontow</b> — koszty adaptacji i remontow</div>
+    <div class="info-note">Nastepny krok: podpiac RZiS per spolka z AL Holding (przychody vs koszty vs marza) — wymaga rozmowy z Pawlem o strukturze danych 2025.</div>
   </div>
 
 </div>
@@ -1319,7 +1370,89 @@
 
 </div>
 
-<!-- ====== VIEW 6: WINS LOG ====== -->
+<!-- ====== VIEW 6: AI ROADMAP ====== -->
+<div id="ai" class="view">
+  <div class="kpi-bar">
+    <div class="kpi-card"><div class="kpi-val" style="color:#26C6DA">6</div><div class="kpi-label">Dyrektorow do wdrozenia</div></div>
+    <div class="kpi-card"><div class="kpi-val" style="color:#26C6DA">10</div><div class="kpi-label">Lekcji AIBL</div></div>
+    <div class="kpi-card"><div class="kpi-val" style="color:#26C6DA">8</div><div class="kpi-label">Integracji API</div></div>
+    <div class="kpi-card"><div class="kpi-val" style="color:#26C6DA">3</div><div class="kpi-label">Fazy roadmapy</div></div>
+  </div>
+
+  <div class="section-title teal">ROADMAPA WDRAZANIA AI — MARZEC-LIPIEC 2026</div>
+
+  <div class="month-grid">
+    <div class="month-card current">
+      <div class="month-name" style="color:#26C6DA">FAZA 1: FUNDAMENT</div>
+      <div class="month-theme">Marzec — Kwiecien 2026</div>
+      <div class="month-items">
+        <div class="task"><div class="task-dot dot-done"></div><span><b>OAuth + API</b> — Google Sheets, Calendar, Contacts, YouTube, Drive, Docs</span></div>
+        <div class="task"><div class="task-dot dot-done"></div><span><b>Livespace CRM API</b> — pipeline, deale, custom fields</span></div>
+        <div class="task"><div class="task-dot dot-done"></div><span><b>Happy Scribe API</b> — 293 transkrypcji, auto-sciaganie</span></div>
+        <div class="task"><div class="task-dot dot-done"></div><span><b>YouTube Data API</b> — statystyki, raport, dane surowe</span></div>
+        <div class="task"><div class="task-dot dot-done"></div><span><b>Nano Banana (Gemini)</b> — generowanie grafik AI</span></div>
+        <div class="task"><div class="task-dot dot-done"></div><span><b>Publer wybrany</b> — auto-publikacja social media ($10/msc)</span></div>
+        <div class="task"><div class="task-dot dot-doing"></div><span><b>Claude for Teams</b> — 5 seats, shared projects</span></div>
+        <div class="task"><div class="task-dot dot-doing"></div><span><b>AIBL 10 lekcji</b> — wszyscy dyrektorzy</span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>Publer konto</b> — zalozyc + podpiac LinkedIn/FB/IG</span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>MailerLite dostep</b> — login dla Macieja</span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>Odoo API</b> — statusy pokoi, wizyty, dostawy</span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>Google Drive /AI-Kontekst-DN/</b> — shared context</span></div>
+      </div>
+    </div>
+
+    <div class="month-card">
+      <div class="month-name" style="color:#26C6DA">FAZA 2: AUTOMATYZACJA</div>
+      <div class="month-theme">Maj — Czerwiec 2026</div>
+      <div class="month-items">
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>Livespace API LIVE</b> — pipeline real-time w dashboardzie</span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>Content pipeline 2.0</b> — auto LI+FB+newsletter (AI->Publer)</span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>ROY v1-v2</b> — procesor spotkan + tracking zadan</span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>Facebook Ads API</b> — automatyczny reporting</span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>Google Ads API</b> — automatyczny reporting</span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>Dashboard v2</b> — live dane z Odoo + Livespace</span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>OLX Bot</b> — auto-import ogloszen via API</span></div>
+      </div>
+    </div>
+
+    <div class="month-card">
+      <div class="month-name" style="color:#26C6DA">FAZA 3: SKALA</div>
+      <div class="month-theme">Lipiec+ 2026</div>
+      <div class="month-items">
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>Chatbot + Voicebot</b> — nowa centralka + AI</span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>Portal ogloszeniowy</b> — wlasny Nearby marketplace</span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>SON 3.0 <-> Odoo <-> Copernicus</b> — pelna integracja</span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>Dashboard v3</b> — pelna automatyzacja, zero recznych danych</span></div>
+        <div class="task"><div class="task-dot dot-todo"></div><span><b>AI raportuje 24/7</b> — alerty, anomalie, rekomendacje</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title teal">INTEGRACJE — STATUS</div>
+  <div class="info-section">
+    <div class="info-section-title">PODLACZONE (DZIALAJACE)</div>
+    <div class="info-bullet"><b>Google Sheets API</b> — raporty WBiznes, PKO dane finansowe</div>
+    <div class="info-bullet"><b>Google Calendar API</b> — 3 kalendarze (osobisty, Ideal Week, rozmowy)</div>
+    <div class="info-bullet"><b>Google Contacts API</b> — 2 734 kontaktow, read+write</div>
+    <div class="info-bullet"><b>Google Docs API</b> — edycja dokumentow (Plan 100M, briefy)</div>
+    <div class="info-bullet"><b>Google Drive API</b> — upload/download plikow</div>
+    <div class="info-bullet"><b>YouTube Data API v3</b> — statystyki kanalu, 734 filmow</div>
+    <div class="info-bullet"><b>Livespace CRM API</b> — 417 deali, 20 zrodel</div>
+    <div class="info-bullet"><b>Happy Scribe API</b> — 293 transkrypcji</div>
+    <div class="info-bullet"><b>Gemini API (Nano Banana)</b> — generowanie grafik</div>
+    <div class="info-bullet"><b>GitHub Pages</b> — hosting dashboardu</div>
+  </div>
+  <div class="info-section">
+    <div class="info-section-title">W KOLEJCE</div>
+    <div class="info-bullet"><b>Publer API</b> — auto-publikacja (konto do zalozenia)</div>
+    <div class="info-bullet"><b>MailerLite</b> — zarzadzanie baza newslettera (login do uzyskania)</div>
+    <div class="info-bullet"><b>Odoo API</b> — dane operacyjne (Oleg podlaczyl, CTO integruje 10-14.03)</div>
+    <div class="info-bullet"><b>Facebook Ads API</b> — planowane czerwiec 2026</div>
+    <div class="info-bullet"><b>Google Ads API</b> — planowane czerwiec 2026</div>
+  </div>
+</div>
+
+<!-- ====== VIEW 7: WINS LOG ====== -->
 <div id="wins" class="view">
 
   <div class="kpi-bar">
@@ -1570,7 +1703,7 @@
 function showView(id, el, activeClass) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(t => {
-    t.classList.remove('active', 'active-green', 'active-purple', 'active-yellow', 'active-pink');
+    t.classList.remove('active', 'active-green', 'active-purple', 'active-yellow', 'active-pink', 'active-teal');
   });
   document.getElementById(id).classList.add('active');
   el.classList.add(activeClass || 'active');
@@ -1583,18 +1716,44 @@ function showView(id, el, activeClass) {
 }
 
 function initFinanceCharts() {
-  var months = ['Mar 25','Kwi 25','Maj 25','Cze 25','Lip 25','Sie 25','Wrz 25','Paz 25','Lis 25','Gru 25','Sty 26','Lut 26'];
+  var months = ['Sty','Lut','Mar','Kwi','Maj','Cze','Lip','Sie','Wrz','Paz','Lis','Gru'];
 
-  // Seasonal pattern multipliers (higher Sep-Nov, lower Jun-Aug)
-  var seasonal = [0.92, 0.94, 0.90, 0.85, 0.82, 0.84, 1.08, 1.12, 1.10, 1.02, 0.96, 0.98];
-
-  var companies = {
-    'AL0':  { base: 500, canvas: 'chartAL0' },
-    'AL1':  { base: 410, canvas: 'chartAL1' },
-    'AXL':  { base: 360, canvas: 'chartAXL' },
-    'ALZ':  { base: 315, canvas: 'chartALZ' },
-    'PAK':  { base: 335, canvas: 'chartPAK' },
-    'RED':  { base: 285, canvas: 'chartRED' }
+  var realData = {
+    'AL0': {
+      canvas: 'chartAL0',
+      y2025: [364,395,370,378,394,402,346,339,295,288,292,312],
+      y2024: [384,390,386,388,388,403,361,339,295,378,386,382]
+    },
+    'AL1': {
+      canvas: 'chartAL1',
+      y2025: [130,144,155,143,160,155,144,161,132,115,131,150],
+      y2024: [142,140,142,141,140,142,141,113,103,125,135,132]
+    },
+    'AXL': {
+      canvas: 'chartAXL',
+      y2025: [410,421,400,409,411,419,393,356,368,338,346,407],
+      y2024: [397,407,427,409,431,434,416,379,342,399,387,375]
+    },
+    'ALZ': {
+      canvas: 'chartALZ',
+      y2025: [756,741,746,761,748,766,665,643,631,716,670,695],
+      y2024: [524,514,541,531,572,573,540,519,498,668,642,626]
+    },
+    'LH': {
+      canvas: 'chartLH',
+      y2025: [617,619,592,583,596,617,595,583,556,669,613,625],
+      y2024: [null,null,null,598,620,597,504,506,508,594,646,594]
+    },
+    'RED': {
+      canvas: 'chartRED',
+      y2025: [50,58,58,56,55,58,65,42,25,36,32,37],
+      y2024: [66,65,65,66,70,57,56,33,31,40,39,44]
+    },
+    'SUMA': {
+      canvas: 'chartSUMA',
+      y2025: [2346,2396,2343,2331,2363,2417,2208,2123,2008,2161,2084,2225],
+      y2024: [1545,1548,1589,2157,2244,2239,2051,1915,1787,2221,2259,2182]
+    }
   };
 
   var chartDefaults = {
@@ -1621,16 +1780,34 @@ function initFinanceCharts() {
     }
   };
 
-  Object.keys(companies).forEach(function(name) {
-    var c = companies[name];
-    var currentData = [];
-    var prevData = [];
-    for (var i = 0; i < 12; i++) {
-      var noise = (Math.random() - 0.5) * 40;
-      var val = Math.round(c.base * seasonal[i] + noise);
-      currentData.push(val);
-      prevData.push(Math.round(val * (0.85 + Math.random() * 0.05)));
+  var sumaChartDefaults = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        labels: { color: 'rgba(255,248,225,0.5)', font: { family: 'Quicksand', size: 10 } }
+      }
+    },
+    scales: {
+      x: {
+        ticks: { color: 'rgba(255,248,225,0.35)', font: { family: 'Quicksand', size: 9 } },
+        grid: { color: 'rgba(255,248,225,0.04)' }
+      },
+      y: {
+        ticks: {
+          color: 'rgba(255,248,225,0.35)',
+          font: { family: 'Quicksand', size: 9 },
+          callback: function(v) { return (v / 1000).toFixed(1) + 'm'; }
+        },
+        grid: { color: 'rgba(255,248,225,0.06)' }
+      }
     }
+  };
+
+  Object.keys(realData).forEach(function(name) {
+    var c = realData[name];
+    var isSuma = (name === 'SUMA');
+    var opts = isSuma ? sumaChartDefaults : chartDefaults;
 
     var ctx = document.getElementById(c.canvas).getContext('2d');
     new Chart(ctx, {
@@ -1639,8 +1816,8 @@ function initFinanceCharts() {
         labels: months,
         datasets: [
           {
-            label: '2025/26',
-            data: currentData,
+            label: '2025',
+            data: c.y2025,
             borderColor: '#03B54D',
             backgroundColor: 'rgba(3,181,77,0.08)',
             borderWidth: 2,
@@ -1649,8 +1826,8 @@ function initFinanceCharts() {
             fill: true
           },
           {
-            label: 'Rok wczesniej',
-            data: prevData,
+            label: '2024',
+            data: c.y2024,
             borderColor: '#555',
             backgroundColor: 'transparent',
             borderWidth: 1.5,
@@ -1661,8 +1838,240 @@ function initFinanceCharts() {
           }
         ]
       },
-      options: chartDefaults
+      options: opts
     });
+  });
+
+  // === KZ CHARTS ===
+
+  // Chart 1: KZ Suma Calkowita (full width)
+  var ctxKZTotal = document.getElementById('chartKZTotal').getContext('2d');
+  new Chart(ctxKZTotal, {
+    type: 'line',
+    data: {
+      labels: months,
+      datasets: [
+        {
+          label: '2025',
+          data: [336,278,286,294,300,306,361,343,374,349,328,316],
+          borderColor: '#03B54D',
+          backgroundColor: 'rgba(3,181,77,0.08)',
+          borderWidth: 2,
+          tension: 0.3,
+          pointRadius: 2,
+          fill: true
+        },
+        {
+          label: '2024',
+          data: [209,176,191,201,223,231,280,281,312,308,285,269],
+          borderColor: '#555',
+          backgroundColor: 'transparent',
+          borderWidth: 1.5,
+          borderDash: [4, 3],
+          tension: 0.3,
+          pointRadius: 1,
+          fill: false
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          labels: { color: 'rgba(255,248,225,0.5)', font: { family: 'Quicksand', size: 10 } }
+        }
+      },
+      scales: {
+        x: {
+          ticks: { color: 'rgba(255,248,225,0.35)', font: { family: 'Quicksand', size: 9 } },
+          grid: { color: 'rgba(255,248,225,0.04)' }
+        },
+        y: {
+          ticks: {
+            color: 'rgba(255,248,225,0.35)',
+            font: { family: 'Quicksand', size: 9 },
+            callback: function(v) { return v + 'k'; }
+          },
+          grid: { color: 'rgba(255,248,225,0.06)' }
+        }
+      }
+    }
+  });
+
+  // Chart 2: KZ jako % przychodu
+  var ctxKZpct = document.getElementById('chartKZpct').getContext('2d');
+  new Chart(ctxKZpct, {
+    type: 'line',
+    data: {
+      labels: months,
+      datasets: [
+        {
+          label: '2025',
+          data: [14.4,11.7,12.3,12.6,12.7,12.6,16.3,16.1,18.6,16.2,15.8,14.2],
+          borderColor: '#03B54D',
+          backgroundColor: 'rgba(3,181,77,0.08)',
+          borderWidth: 2,
+          tension: 0.3,
+          pointRadius: 2,
+          fill: true
+        },
+        {
+          label: '2024',
+          data: [13.5,11.4,12.0,9.3,10.0,10.3,13.7,14.7,17.5,13.8,12.6,12.3],
+          borderColor: '#555',
+          backgroundColor: 'transparent',
+          borderWidth: 1.5,
+          borderDash: [4, 3],
+          tension: 0.3,
+          pointRadius: 1,
+          fill: false
+        },
+        {
+          label: 'Cel 15%',
+          data: [15,15,15,15,15,15,15,15,15,15,15,15],
+          borderColor: 'rgba(255,68,68,0.4)',
+          backgroundColor: 'transparent',
+          borderWidth: 1,
+          borderDash: [8, 4],
+          tension: 0,
+          pointRadius: 0,
+          fill: false
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          labels: { color: 'rgba(255,248,225,0.5)', font: { family: 'Quicksand', size: 10 } }
+        }
+      },
+      scales: {
+        x: {
+          ticks: { color: 'rgba(255,248,225,0.35)', font: { family: 'Quicksand', size: 9 } },
+          grid: { color: 'rgba(255,248,225,0.04)' }
+        },
+        y: {
+          ticks: {
+            color: 'rgba(255,248,225,0.35)',
+            font: { family: 'Quicksand', size: 9 },
+            callback: function(v) { return v + '%'; }
+          },
+          grid: { color: 'rgba(255,248,225,0.06)' }
+        }
+      }
+    }
+  });
+
+  // Chart 3: KZ per najemca (PLN/os/msc)
+  var ctxKZperN = document.getElementById('chartKZperN').getContext('2d');
+  new Chart(ctxKZperN, {
+    type: 'line',
+    data: {
+      labels: months,
+      datasets: [
+        {
+          label: '2025',
+          data: [229,191,194,201,204,203,249,238,259,244,229,220],
+          borderColor: '#03B54D',
+          backgroundColor: 'rgba(3,181,77,0.08)',
+          borderWidth: 2,
+          tension: 0.3,
+          pointRadius: 2,
+          fill: true
+        },
+        {
+          label: '2024',
+          data: [224,187,198,199,171,171,203,201,216,215,197,184],
+          borderColor: '#555',
+          backgroundColor: 'transparent',
+          borderWidth: 1.5,
+          borderDash: [4, 3],
+          tension: 0.3,
+          pointRadius: 1,
+          fill: false
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          labels: { color: 'rgba(255,248,225,0.5)', font: { family: 'Quicksand', size: 10 } }
+        }
+      },
+      scales: {
+        x: {
+          ticks: { color: 'rgba(255,248,225,0.35)', font: { family: 'Quicksand', size: 9 } },
+          grid: { color: 'rgba(255,248,225,0.04)' }
+        },
+        y: {
+          ticks: {
+            color: 'rgba(255,248,225,0.35)',
+            font: { family: 'Quicksand', size: 9 }
+          },
+          grid: { color: 'rgba(255,248,225,0.06)' }
+        }
+      }
+    }
+  });
+
+  // Chart 4: KZ struktura kosztow (horizontal stacked bar)
+  var ctxKZstructure = document.getElementById('chartKZstructure').getContext('2d');
+  new Chart(ctxKZstructure, {
+    type: 'bar',
+    data: {
+      labels: ['2024', '2025'],
+      datasets: [
+        {
+          label: 'Wynagrodzenia',
+          data: [1725, 2547],
+          backgroundColor: '#FF691F'
+        },
+        {
+          label: 'Biuro',
+          data: [874, 959],
+          backgroundColor: '#665BC2'
+        },
+        {
+          label: 'Auta',
+          data: [368, 362],
+          backgroundColor: '#FFCC33'
+        }
+      ]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          labels: { color: 'rgba(255,248,225,0.5)', font: { family: 'Quicksand', size: 10 } }
+        }
+      },
+      scales: {
+        x: {
+          stacked: true,
+          ticks: {
+            color: 'rgba(255,248,225,0.35)',
+            font: { family: 'Quicksand', size: 9 },
+            callback: function(v) { return v + 'k'; }
+          },
+          grid: { color: 'rgba(255,248,225,0.06)' }
+        },
+        y: {
+          stacked: true,
+          ticks: {
+            color: 'rgba(255,248,225,0.35)',
+            font: { family: 'Quicksand', size: 11, weight: '700' }
+          },
+          grid: { color: 'rgba(255,248,225,0.04)' }
+        }
+      }
+    }
   });
 }
 </script>
